@@ -3,8 +3,8 @@ Este projeto tem como objetivo criar um sistema de gerenciamento de eventos foca
 O sistema está sendo desenvolvido como um projeto para a matéria de MAC0242 (Laboratório de Programação II) do curso de Ciências da Computação do IME-USP.  
 
 # Desenvolvedores
-- (Caio Barrocal)[http://github.com/caiobarrocal)
-- (Nathan Proença)[http://github.com/nathanpro)
-- (Pedro Nepomuceno)[http://github.com/pedroivo)
-- (Hélio Assakura)[http://github.com/hassakura)
-- (Victor Sena)[http://github.com/victorsenam)
+- [Caio Barrocal](http://github.com/caiobarrocal)
+- [Nathan Proença](http://github.com/nathanpro)
+- [Pedro Nepomuceno](http://github.com/pedroivo)
+- [Hélio Assakura](http://github.com/hassakura)
+- [Victor Sena](http://github.com/victorsenam)
