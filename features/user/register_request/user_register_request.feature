@@ -1,8 +1,8 @@
 @wip
 Feature: User Register Request
-O colaborador
-quer se cadastrar e pedir para ser aceito
-para que possa acessar o sistema
+The collaborator
+Wants to register and request its acceptance
+In order to access the system
 
     Scenario: User signs up and waits for acceptance
         Given I am on the user signup page
