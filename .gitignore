@@ -18,8 +18,9 @@ rerun.txt
 pickle-email-*.html
 
 # Comment out these rules if you are OK with secrets being uploaded to the repo
-config/initializers/secret_token.rb
-config/secrets.yml
+# The development and testing secrets can be uploaded, but the production secrets should be set as ENV VARS
+# config/initializers/secret_token.rb
+# config/secrets.yml
 
 ## Environment normalisation:
 /.bundle
