@@ -55,6 +55,8 @@ Feature: User Register Request
         Given I have a registered user with "johndoe@example.com" as "email"
         And I am on the user signup page
         When I fill the form with a valid user
+        And I fill "johndoe@example.com" in "Email"
+        And I fill "johndoe@example.com" in "Confirmação de Email"
         And I click the "Registrar" button
         Then I should see "Erro no cadastro!"
         And I should see "Esse email já foi cadastrado :("

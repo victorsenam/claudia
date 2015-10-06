@@ -11,3 +11,8 @@ When(/^I fill the form with a valid user$/) do
   fill_in 'Senha', with: user.password
   fill_in 'Confirmação de Senha', with: user.password
 end
+
+Given(/^I have a registered user with "(.*?)" as "(.*?)"$/) do |special_value, special_field|
+  user = create(:user, special_field.to_sym => special_value)
+end
+
