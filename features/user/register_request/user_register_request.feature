@@ -43,7 +43,7 @@ Feature: User Register Request
         And I fill "senha segura" in "Confirmação de Senha"
         And I click the "Registrar" button
         Then I should see "Erro no cadastro!"
-        And I should see "Confirmação do Email errada"
+        And I should see "A Confirmação do Email está errada"
 
     Scenario: User misses password confirmation
         Given I am on the user signup page
@@ -53,7 +53,7 @@ Feature: User Register Request
         And I fill "senha mais segura" in "Confirmação de Senha"
         And I click the "Registrar" button
         Then I should see "Erro no cadastro!"
-        And I should see "Confirmação de Senah errada"
+        And I should see "A Confirmação de Senha está errada"
 
     Scenario: User inputs small password
         Given I am on the user signup page
@@ -64,3 +64,14 @@ Feature: User Register Request
         And I click the "Registrar" button
         Then I should see "Erro no cadastro!"
         And I should see "A senha deve ter pelo menos 8 caracteres"
+
+    Scenario: Email already used
+        Given There's a registered user with "johndoe@example.com" as "email"
+        And I am on the user signup page
+        When I fill "johndoe@example.com" in "Email"
+        And I fill "johndoe@example.com" in "Email"
+        And I fill "senha" in "Senha"
+        And I fill "senha" in "Confirmação de Senha"
+        And I click the "Registrar" button
+        Then I should see "Erro no cadastro!"
+        And I should see "Esse email já foi cadastrado :("
