@@ -5,9 +5,13 @@ class User < ActiveRecord::Base
   SUPER = 7
 
   has_secure_password
-  validates :name, presence: true
-  validates :password, length: {minimum: 6}
-  validates :email, presence: true, confirmation: true, uniqueness: true, format: {with: /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/}
+  validates :name, presence: { message: "Nome vazio!" } 
+  validates :password, length: { minimum: 6, message: "Senha muito pequena!" }
+  # TODO , confirmation: { message: "Confirme seu email!" }
+  validates :email, presence: { message: "Precisamos do seu email!" },
+      confirmation: true, 
+      uniqueness: true, 
+      format: { with: /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/, message: "Email inválido!"}
 
   before_create :override_rank
 
