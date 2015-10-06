@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :name, presence: { message: "Nome vazio!" } 
   validates :password, 
-    length: { minimum: 6, message: "A senha deve ter pelo menos 6 caracteres" },
+    length: { minimum: 6, message: "A senha deve ter pelo menos 6 caracteres." },
     confirmation: { message: "A Confirmação da Senha está errada." }
 
   validates :email, 
