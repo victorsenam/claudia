@@ -51,12 +51,18 @@ Feature: User Register Request
         Then I should see "Erro no cadastro!"
         And I should see "A senha deve ter pelo menos 6 caracteres."
 
-    Scenario: Email already used
+    Scenario Outline: Email already used
         Given I have a registered user with "johndoe@example.com" as "email"
         And I am on the user signup page
         When I fill the form with a valid user
-        And I fill "johndoe@example.com" in "Email"
-        And I fill "johndoe@example.com" in "Confirmação de Email"
+        And I fill <email> in "Email"
+        And I fill <email> in "Confirmação de Email"
         And I click the "Registrar" button
         Then I should see "Erro no cadastro!"
         And I should see "Esse email já foi cadastrado :("
+
+        Examples:
+            |email                |
+            |"johndoe@example.com"|
+            |"JohnDoe@example.com"|
+

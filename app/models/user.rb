@@ -18,8 +18,13 @@ class User < ActiveRecord::Base
       confirmation: { message: "Email não bate" }
 
   before_create :override_rank
+  before_validation :normalize_email
 
   def override_rank
     self.rank = 0
+  end
+
+  def normalize_email
+      self.email.downcase!
   end
 end
