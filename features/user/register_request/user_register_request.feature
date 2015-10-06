@@ -33,7 +33,7 @@ Feature: User Register Request
         And I fill "outroemail@gmail.com" in "Email"
         And I click the "Registrar" button
         Then I should see "Erro no cadastro!"
-        And I should see "A Confirmação do Email está errada."
+        And I should see "Email não bate"
 
     Scenario: User misses password confirmation
         Given I am on the user signup page
@@ -41,7 +41,7 @@ Feature: User Register Request
         And I fill "umaoutrasenhasenha segura e arbritaria (sem acento)" in "Confirmação de Senha"
         And I click the "Registrar" button
         Then I should see "Erro no cadastro!"
-        And I should see "A Confirmação de Senha está errada."
+        And I should see "Senha não bate"
 
     Scenario: User inputs small password
         Given I am on the user signup page
@@ -52,7 +52,7 @@ Feature: User Register Request
         And I should see "A senha deve ter pelo menos 6 caracteres."
 
     Scenario: Email already used
-        Given There's a registered user with "johndoe@example.com" as "email"
+        Given I have a registered user with "johndoe@example.com" as "email"
         And I am on the user signup page
         When I fill the form with a valid user
         And I click the "Registrar" button

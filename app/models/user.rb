@@ -4,17 +4,18 @@ class User < ActiveRecord::Base
   ACCEPTED = 1
   SUPER = 7
 
-  has_secure_password
-  validates :name, presence: { message: "Nome vazio!" } 
+  validates :name, presence: { message: "Nome vazio!" }
+
   validates :password, 
-    length: { minimum: 6, message: "A senha deve ter pelo menos 6 caracteres." },
-    confirmation: { message: "A Confirmação da Senha está errada." }
+    presence: { message: "Precisamos de uma senha!" },
+    confirmation: { message: "Senha não bate" },
+    length: { minimum: 6, message: "A senha deve ter pelo menos 6 caracteres." }
 
   validates :email, 
       presence: { message: "Precisamos do seu email!" },
-      confirmation: { message: "A Confirmação do Email está errada." },
       uniqueness: { message: "Esse email já foi cadastrado :(" }, 
-      format: { with: /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/, message: "Email inválido!"}
+      format: { with: /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/, message: "Email inválido!"},
+      confirmation: { message: "Email não bate" }
 
   before_create :override_rank
 
