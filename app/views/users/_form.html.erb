@@ -20,8 +20,16 @@
     <%= f.text_field :email %>
   </div>
   <div class="field">
+    <%= f.label :email_confirmation, "Confirmação de Email" %><br>
+    <%= f.text_field :email_confirmation %>
+  </div>
+  <div class="field">
     <%= f.label :password, "Senha" %><br>
     <%= f.text_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :password_confirmation, "Confirmação de Senha" %><br>
+    <%= f.text_field :password_confirmation %>
   </div>
   <div class="actions">
     <%= f.submit "Registrar" %>
