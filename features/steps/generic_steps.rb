@@ -6,6 +6,6 @@ When(/^I click the "(.*?)" button$/) do |button_name|
     click_button button_name
 end
 
-Then(/^I should see "(.*?)"$/) do |interaction|
-    expect ( have_content interaction )
+Then(/^I should see "(.*?)"$/) do |text|
+    expect ( page ).to have_content text )
 end
