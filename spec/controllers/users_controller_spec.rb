@@ -59,14 +59,6 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
-  describe "GET #edit" do
-    it "assigns the requested user as @user" do
-      user = User.create! valid_attributes
-      get :edit, {:id => user.to_param}, valid_session
-      expect(assigns(:user)).to eq(user)
-    end
-  end
-
   describe "POST #create" do
     context "with valid params" do
       it "creates a new User" do
@@ -97,21 +89,6 @@ RSpec.describe UsersController, type: :controller do
         post :create, {:user => invalid_attributes}, valid_session
         expect(response).to render_template("new")
       end
-    end
-  end
-
-  describe "DELETE #destroy" do
-    it "destroys the requested user" do
-      user = User.create! valid_attributes
-      expect {
-        delete :destroy, {:id => user.to_param}, valid_session
-      }.to change(User, :count).by(-1)
-    end
-
-    it "redirects to the users list" do
-      user = User.create! valid_attributes
-      delete :destroy, {:id => user.to_param}, valid_session
-      expect(response).to redirect_to(users_url)
     end
   end
 
