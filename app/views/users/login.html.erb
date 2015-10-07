@@ -1,0 +1,26 @@
+<h1>Login</h1>
+
+<%= p 'second' %>
+<%= form_for(:user, url: {controller: 'users', action: 'auth'}) do |f| %>
+  <% if @errors.any? %>
+    <div id="error_explanation">
+      <h2>Erro no cadastro!</h2>
+
+      <ul>
+      <% @errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :login, "Nome ou Email" %>
+    <%= f.text_field :login %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password, "Senha" %>
+    <%= f.password_field :password %>
+  </div>
+<% end %>
