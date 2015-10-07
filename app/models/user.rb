@@ -9,7 +9,8 @@ class User < ActiveRecord::Base
     :password => "Senha",
     :password_confirmation => "Confirmação de senha",
     :email => "Email",
-    :email_confirmation => "Confirmação de email"
+    :email_confirmation => "Confirmação de email",
+    :name => "Nome"
   }
  
  def self.human_attribute_name(attr, options={})
@@ -17,7 +18,7 @@ class User < ActiveRecord::Base
   end
 
 
-  validates :name, presence: { message: "Nome vazio!" }
+  validates :name, presence: { message: " vazio!" }
 
   validates :password, 
     presence: { message: "é um campo obrigatório." },
