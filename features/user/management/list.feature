@@ -1,4 +1,4 @@
-Feature: I need user list to be sensitive about user rank
+Feature: Users Listing
     The administrator
     Wants to update permissions and access information
     In order to manage users
@@ -17,8 +17,8 @@ Feature: I need user list to be sensitive about user rank
         Given I have a registered user
         And I have a valid admin session
         When I try to access the users list
-        Then I should see every user's name
-        And I should see every user's email
+        Then I should see every user's "name"
+        And I should see every user's "email"
 
     Scenario: Administrator should be able to access specific user info
         Given I have a registered user with "Nathan" as "name"
