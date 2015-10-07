@@ -2,6 +2,10 @@ Given(/^I am on the user signup page$/) do
   visit '/users/new'
 end
 
+Given(/^I am at the login page$/) do
+  visit '/users/login'
+end
+
 When(/^I try to access the users list$/) do
   visit '/users'
 end
@@ -20,12 +24,14 @@ When(/^I fill the form with a valid user$/) do
   fill_in 'Confirmação de Senha', with: user.password
 end
 
-Given(/^I have a registered user with "(.*?)" as "(.*?)"$/) do |special_value, special_field|
-  user = create(:user, special_field.to_sym => special_value)
+Given(/^I have a registered user$/) do
+  @last_user = attributes_for(:user)
+  create(:user, @last_user)
 end
 
-Given(/^I have a registered user$/) do
-  create(:user)
+Given(/^I have a registered user with "(.*?)" as "(.*?)"$/) do |special_value, special_field|
+  @last_user = attributes_for(:user, special_field.to_sym => special_value)
+  create(:user, @last_user)
 end
 
 Given(/^I have a valid user session$/) do
@@ -51,3 +57,18 @@ Then(/^I should see info for user "(.*?)"$/) do |user_name|
   expect( page ).to have_content user.email
 end
 
+When(/^I fill that user's "(.*?)" in "(.*?)"$/) do |attribute, field|
+  val = @last_user.send(attribute.to_sym)
+  fill_in field, with: val
+end
+
+Given(/^I am logged in with "(.*?)" as "(.*?)"$/) do |val, attr|
+  @last_user = attributes_for(:user, attr.to_sym => val)
+  create(:user, @last_user)
+
+  visit '/users/login'
+
+  fill_in 'Email', with: @last_user.email
+  fill_in 'Senha', with: @last_user.password
+  find( 'Enviar' ).click
+end

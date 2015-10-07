@@ -18,3 +18,6 @@ Then(/^I should not see "(.*?)"$/) do |text|
     expect( page ).not_to have_content( text )
 end
 
+Given(/^I am at the root page$/) do
+  pending # express the regexp above with the code you wish you had
+end
