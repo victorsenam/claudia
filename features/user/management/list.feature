@@ -25,7 +25,7 @@ Feature: Users Listing
         And I have a valid admin session
         And I am on the users list page
         When I click on "Nathan"
-        Then I should see info for "Nathan"
+        Then I should see info for user "Nathan"
 
     Scenario: Administrator shoud not see private information
         Given I have a registered user with "senha muito boba" as "password"
