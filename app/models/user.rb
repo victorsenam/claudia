@@ -41,6 +41,6 @@ class User < ActiveRecord::Base
   end
 
   def normalize_email
-    self.email.downcase!
+    self.email.downcase! if self.email
   end
 end
