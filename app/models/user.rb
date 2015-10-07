@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   # User ranks constants
   PENDING = 0
   ACCEPTED = 1
+  ADMIN = 6
   SUPER = 7
 
   validates :name, 
@@ -15,19 +16,19 @@ class User < ActiveRecord::Base
   has_secure_password
 
   validates :email, 
-      presence: { message: "Precisamos do seu email!" },
-      uniqueness: { message: "Esse email já foi cadastrado :(" }, 
-      format: { with: /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/, message: "Email inválido!"},
-      confirmation: { message: "Email não bate" }
+    presence: { message: "Precisamos do seu email!" },
+    uniqueness: { message: "Esse email já foi cadastrado :(" }, 
+    format: { with: /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/, message: "Email inválido!"},
+    confirmation: { message: "Email não bate" }
 
   before_create :override_rank
   before_validation :normalize_email
 
   def override_rank
-    self.rank = 0
+    self.rank = PENDING
   end
 
   def normalize_email
-      self.email.downcase!
+    self.email.downcase!
   end
 end
