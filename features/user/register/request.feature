@@ -33,7 +33,7 @@ Feature: User Register Request
         And I fill "outroemail@gmail.com" in "Email"
         And I click the "Registrar" button
         Then I should see "Erro no cadastro!"
-        And I should see "Email não bate"
+        And I should see "Confirmação de email não bate."
 
     Scenario: User misses password confirmation
         Given I am on the user signup page
@@ -41,7 +41,7 @@ Feature: User Register Request
         And I fill "umaoutrasenhasenha segura e arbritaria (sem acento)" in "Confirmação de Senha"
         And I click the "Registrar" button
         Then I should see "Erro no cadastro!"
-        And I should see "Senha não bate"
+        And I should see "Confirmação de senha não bate."
 
     Scenario: User inputs small password
         Given I am on the user signup page
@@ -49,7 +49,7 @@ Feature: User Register Request
         And I fill "senha" in "Senha"
         And I click the "Registrar" button
         Then I should see "Erro no cadastro!"
-        And I should see "A senha deve ter pelo menos 6 caracteres."
+        And I should see "Senha deve ter pelo menos 6 caracteres."
 
     Scenario Outline: Email already used
         Given I have a registered user with "johndoe@example.com" as "email"
@@ -59,7 +59,7 @@ Feature: User Register Request
         And I fill <email> in "Confirmação de Email"
         And I click the "Registrar" button
         Then I should see "Erro no cadastro!"
-        And I should see "Esse email já foi cadastrado :("
+        And I should see "Email já foi cadastrado no sistema :("
 
         Examples:
             |email                |
