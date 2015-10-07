@@ -5,6 +5,6 @@ O sistema está sendo desenvolvido como um projeto para a matéria de MAC0242 (L
 # Desenvolvedores
 - [Caio Barrocal](http://github.com/caiobarrocal)
 - [Nathan Proença](http://github.com/nathanpro)
-- [Pedro Nepomuceno](http://github.com/pedroivo)
+- [Pedro Nepomuceno](http://github.com/pisn)
 - [Hélio Assakura](http://github.com/hassakura)
 - [Victor Sena](http://github.com/victorsenam)
