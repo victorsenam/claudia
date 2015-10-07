@@ -4,12 +4,15 @@ class User < ActiveRecord::Base
   ACCEPTED = 1
   SUPER = 7
 
-  validates :name, presence: { message: "Nome vazio!" }
+  validates :name, 
+    presence: { message: "Nome vazio!" }
 
   validates :password, 
     presence: { message: "Precisamos de uma senha!" },
     confirmation: { message: "Senha não bate" },
     length: { minimum: 6, message: "A senha deve ter pelo menos 6 caracteres." }
+    
+  has_secure_password
 
   validates :email, 
       presence: { message: "Precisamos do seu email!" },
