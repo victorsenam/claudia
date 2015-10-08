@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   get 'sessions/destroy'
 
   # users routes
-  get 'users/login' => 'users#login'
   resources :users
 
 
