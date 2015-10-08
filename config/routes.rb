@@ -1,10 +1,8 @@
 Rails.application.routes.draw do
   
-  get 'sessions/new'
-
-  get 'sessions/create'
-
-  get 'sessions/destroy'
+  get 'sessions/new', to: 'sessions#new'
+  get 'sessions/destroy', to: 'sessions#destroy'
+  post 'sessions/create', to: 'sessions#create'
 
   # users routes
   resources :users

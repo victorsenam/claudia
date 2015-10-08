@@ -50,7 +50,7 @@ Then(/^I should see info for user "(.*?)"$/) do |user_name|
 end
 
 When(/^I fill that user's "(.*?)" in "(.*?)"$/) do |attribute, field|
-  val = @last_user.send(attribute.to_sym)
+  val = @last_user[attribute.to_sym]
   fill_in field, with: val
 end
 
@@ -60,8 +60,8 @@ Given(/^I am logged in with "(.*?)" as "(.*?)"$/) do |val, attr|
 
   visit '/sessions/new'
 
-  fill_in 'Email', with: @last_user.email
-  fill_in 'Senha', with: @last_user.password
+  fill_in 'Email', with: @last_user[:email]
+  fill_in 'Senha', with: @last_user[:password]
   find( 'Enviar' ).click
 end
 

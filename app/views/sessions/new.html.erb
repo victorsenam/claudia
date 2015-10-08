@@ -1,2 +1,25 @@
-<h1>Sessions#new</h1>
-<p>Find me in app/views/sessions/new.html.erb</p>
+<h1>Login</h1>
+
+<%= form_tag('/sessions/create') do %>
+  <% if @errors.any? %>
+    <div id="error_explanation">
+      <h2>Erro no Login</h2>
+
+      <ul>
+      <% @errors.each do |message| %>
+        <li><%= message %>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= label_tag :login, "Login" %>
+    <%= text_field_tag :login %>
+  </div>
+
+  <div class="field">
+    <%= label_tag :password, "Password" %>
+    <%= password_field_tag :password %>
+  </div>
+<% end %>

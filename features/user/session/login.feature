@@ -33,3 +33,10 @@ Feature: User Login
         And I fill "senhaqueelenaovaiter" in "Senha"
         And I click the "Entrar" button
         Then I should see "Senha Inválida"
+
+    Scenario: I should be able to logout
+        Given I have a registered user
+        And I have a valid user session
+        And I am at the root
+        When I click on "Logout"
+        Then I should see "Login"
