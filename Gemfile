@@ -48,6 +48,7 @@ group :test do
   gem 'database_cleaner'
 
   gem 'selenium-webdriver'
+  gem 'nyan-cat-formatter'
 end
 
 group :development do
