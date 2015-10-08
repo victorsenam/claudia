@@ -1,7 +1,6 @@
 class SessionsController < ApplicationController
   def new
-    @errors = flash['errors'] || []
-    byebug
+    @errors ||= flash['errors'] || []
   end
 
   def create
