@@ -3,7 +3,7 @@ Given(/^I am on the user signup page$/) do
 end
 
 Given(/^I am at the login page$/) do
-  visit '/session/new'
+  visit '/sessions/new'
 end
 
 When(/^I try to access the users list$/) do
