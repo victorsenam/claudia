@@ -3,7 +3,7 @@ Given(/^I am on the user signup page$/) do
 end
 
 Given(/^I am at the login page$/) do
-  visit '/users/login'
+  visit '/session/new'
 end
 
 When(/^I try to access the users list$/) do
@@ -34,14 +34,6 @@ Given(/^I have a registered user with "(.*?)" as "(.*?)"$/) do |special_value, s
   create(:user, @last_user)
 end
 
-Given(/^I have a valid user session$/) do
-  pending # express the regexp above with the code you wish you had
-end
-
-Given(/^I have a valid admin session$/) do
-  pending # express the regexp above with the code you wish you had
-end
-
 Then(/^I should see every user's "(.*?)"$/) do |attr|
   users = User.all
 
@@ -66,9 +58,18 @@ Given(/^I am logged in with "(.*?)" as "(.*?)"$/) do |val, attr|
   @last_user = attributes_for(:user, attr.to_sym => val)
   create(:user, @last_user)
 
-  visit '/users/login'
+  visit '/sessions/new'
 
   fill_in 'Email', with: @last_user.email
   fill_in 'Senha', with: @last_user.password
   find( 'Enviar' ).click
 end
+
+Given(/^I have a valid user session$/) do
+  pending # express the regexp above with the code you wish you had
+end
+
+Given(/^I have a valid admin session$/) do
+  pending # express the regexp above with the code you wish you had
+end
+
