@@ -1,21 +1,21 @@
 <h1>Login</h1>
 
-<%= form_tag('/sessions/create') do %>
+<%= form_tag sessions_create_path do %>
   <% if @errors.any? %>
     <div id="error_explanation">
       <h2>Erro no Login</h2>
 
       <ul>
       <% @errors.each do |message| %>
-        <li><%= message %>
+          <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
   <div class="field">
-    <%= label_tag :login, "Email" %>
-    <%= text_field_tag :login %>
+    <%= label_tag :email, "Email" %>
+    <%= text_field_tag :email %>
   </div>
 
   <div class="field">
