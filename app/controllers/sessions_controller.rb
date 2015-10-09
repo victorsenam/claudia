@@ -6,11 +6,16 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by_email( params[:email] )
     if user && user.authenticate( params[:password] )
-      session[:user_id] = user.id
-      flash['notice'] = "Logado com Sucesso!"
-      redirect_to '/users'
+      if user.rank == User::PENDING
+        flash['errors'] = ["Usuário pendente, por favor, aguarde sua aceitação no sistema."]
+        redirect_to '/sessions/new'
+      else
+        session[:user_id] = user.id
+        flash['notice'] = "Logado com Sucesso!"
+        redirect_to '/users'
+      end
     else
-      flash['error'] = "Usuário Inválido"
+      flash['errors'] = ["Usuário Inválido"]
       redirect_to '/sessions/new'
     end
   end
