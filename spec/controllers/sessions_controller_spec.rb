@@ -33,6 +33,7 @@ RSpec.describe SessionsController, type: :controller do
 
       p flash.to_hash
       expect( session ).not_to be_empty
+      expect( session.to_hash ).to have_key('user_id')
       expect( flash.to_hash ).to have_key('notice')
       expect( flash[:notice] ).not_to be_empty
       expect( flash.to_hash ).not_to have_key('errors')
