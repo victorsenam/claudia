@@ -19,31 +19,5 @@ Then(/^I should not see "(.*?)"$/) do |text|
 end
 
 Given(/^I am at the root page$/) do
-  pending # express the regexp above with the code you wish you had
-end
-
-Given(/^I have a valid user session$/) do
-  user_attr = attributes_for(:user)
-  user = create(:user, user_attr)
-  user.rank = user_attr[:rank] = User::ACCEPTED
-  user.save!
-
-  visit '/sessions/new'
-
-  fill_in 'Email', with: user_attr[:email]
-  fill_in 'Senha', with: user_attr[:password]
-  find('[value=Entrar]').click
-end
-
-Given(/^I have a valid admin session$/) do
-  user_attr = attributes_for(:user)
-  user = create(:user,user_attr)
-  user.rank = user_attr[:rank] = User::ADMIN
-  user.save!
-
-  visit '/sessions/new'
-
-  fill_in 'Email', with: user_attr[:email]
-  fill_in 'Senha', with: user_attr[:password]
-  find('[value=Entrar]').click
+  visit root_path
 end

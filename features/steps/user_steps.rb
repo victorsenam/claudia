@@ -29,9 +29,10 @@ Given(/^I have a registered user$/) do
   create(:user, @last_user)
 end
 
-Given(/^I have a registered user with "(.*?)" as "(.*?)"$/) do |special_value, special_field|
-  @last_user = attributes_for(:user, special_field.to_sym => special_value)
-  create(:user, @last_user)
+Given(/^That user's "(.*?)" is "(.*?)"$/) do |attr, value|
+  user = User.find_by_id(@last_user[:id])
+  user.update_attribute(attr.to_sym, value)
+  @last_user[attr.to_sym] = value
 end
 
 Then(/^I should see every user's "(.*?)"$/) do |attr|
@@ -54,13 +55,10 @@ When(/^I fill that user's "(.*?)" in "(.*?)"$/) do |attribute, field|
   fill_in field, with: val
 end
 
-Given(/^I am logged in with "(.*?)" as "(.*?)"$/) do |val, attr|
-  @last_user = attributes_for(:user, attr.to_sym => val)
-  create(:user, @last_user)
-
+Given(/^I am logged in as that user$/) do
   visit '/sessions/new'
 
   fill_in 'Email', with: @last_user[:email]
   fill_in 'Senha', with: @last_user[:password]
-  find( 'Enviar' ).click
+  find( '[value=Entrar]' ).click
 end
