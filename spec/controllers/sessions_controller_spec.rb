@@ -20,7 +20,6 @@ RSpec.describe SessionsController, type: :controller do
       expect(assigns(:errors)).to eq( [] )
     end
 
-    dd
   end
 
   describe "GET #destroy" do
