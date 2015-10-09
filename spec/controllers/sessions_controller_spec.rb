@@ -8,11 +8,9 @@ RSpec.describe SessionsController, type: :controller do
       expect(response).to have_http_status(:success)
     end
 
-    # TODO: Pass this test :) (It's not assigning the flash correctly)
-    it "should assign errors from last request on errors", :pending do
+    it "should assign errors from last request on errors" do
       errors = ['testes de erros']
-      flash['errors'] = errors
-      get :new
+      get :new, nil, nil, errors: errors
       expect(assigns(:errors)).to eq( errors )
     end
     
@@ -21,13 +19,8 @@ RSpec.describe SessionsController, type: :controller do
       
       expect(assigns(:errors)).to eq( [] )
     end
-  end
 
-  describe "GET #create" do
-    it "returns http success" do
-      get :create
-      expect(response).to have_http_status(:success)
-    end
+    dd
   end
 
   describe "GET #destroy" do
