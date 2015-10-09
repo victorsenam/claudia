@@ -23,16 +23,53 @@ RSpec.describe SessionsController, type: :controller do
   end
 
   describe "POST #create" do
-# TODO: Test all creation features, pending users, valid users, unexistant users, mail fails, etc...
-    it "should assign a session to a valid active user" do
+    it "should log in a valid active user" do
       user_attr = attributes_for(:user)
       user = create(:user, user_attr)
       user.rank = user_attr[:rank] = 1
 
+      post :create, {email: user_attr[:email], password: user_attr[:password]}
+
+      p flash.to_hash
+      expect( session ).not_to be_empty
+      expect( flash.to_hash ).to have_key('notice')
+      expect( flash[:notice] ).not_to be_empty
+      expect( flash.to_hash ).not_to have_key('errors')
+    end
+
+    it "should not login pending users" do
+      user_attr = attributes_for(:user)
+      user = create(:user, user_attr)
+    
+      post :create, {email: user_attr[:email], password: user_attr[:password]}
+
+      expect( session ).to be_empty
+      expect( flash.to_hash ).not_to have_key('notice')
+      expect( flash.to_hash ).to have_key('errors')
+      expect( flash[:errors] ).not_to be_empty
+    end
+
+    it "should not login unexistant users" do
+      user_attr = attributes_for(:user)
 
       post :create, {email: user_attr[:email], password: user_attr[:password]}
 
-      expect( session ).not_to be_empty
+      expect( session ).to be_empty
+      expect( flash.to_hash ).not_to have_key('notice')
+      expect( flash.to_hash ).to have_key('errors')
+      expect( flash[:errors] ).not_to be_empty
+    end
+
+    it "should not login users with a wrong password" do
+      user_attr = attributes_for(:user)
+      user = create(:user, user_attr)
+      
+      post :create, {email: user_attr[:email], password: (user_attr[:password]+'suffix')}
+
+      expect( session ).to be_empty
+      expect( flash.to_hash ).not_to have_key('notice')
+      expect( flash.to_hash ).to have_key('errors')
+      expect( flash[:errors] ).not_to be_empty
     end
   end
 
