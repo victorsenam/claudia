@@ -23,17 +23,27 @@ Given(/^I am at the root page$/) do
 end
 
 Given(/^I have a valid user session$/) do
-  user = create(:user)
-  user.rank = User::ACCEPTED
+  user_attr = attributes_for(:user)
+  user = create(:user, user_attr)
+  user.rank = user_attr[:rank] = User::ACCEPTED
   user.save!
 
-  session[:user_id] = user.id
+  visit '/sessions/new'
+
+  fill_in 'Email', with: user_attr[:email]
+  fill_in 'Senha', with: user_attr[:password]
+  find('[value=Entrar]').click
 end
 
 Given(/^I have a valid admin session$/) do
-  user = create(:user)
-  user.rank = User::ADMIN
+  user_attr = attributes_for(:user)
+  user = create(:user,user_attr)
+  user.rank = user_attr[:rank] = User::ADMIN
   user.save!
 
-  session[:user_id] = user.id
+  visit '/sessions/new'
+
+  fill_in 'Email', with: user_attr[:email]
+  fill_in 'Senha', with: user_attr[:password]
+  find('[value=Entrar]').click
 end

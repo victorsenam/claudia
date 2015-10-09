@@ -32,7 +32,7 @@ class TeamsController < ApplicationController
 
     respond_to do |format|
       if @team.save
-        format.html { redirect_to @team, notice: 'Team was successfully created.' }
+        format.html { redirect_to @team, notice: 'Equipe pronta para receber usuários.' }
         format.json { render :show, status: :created, location: @team }
       else
         format.html { render :new }
@@ -86,6 +86,6 @@ class TeamsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def team_params
-      params[:team]
+      params.require(:team).permit(:name)
     end
 end

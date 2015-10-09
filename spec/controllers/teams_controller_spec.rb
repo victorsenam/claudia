@@ -24,11 +24,11 @@ RSpec.describe TeamsController, type: :controller do
   # Team. As you add validations to Team, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    FactoryGirl.attributes_for(:team)
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+   FactoryGirl.attributes_for(:team,name: '') 
   }
 
   # This should return the minimal set of values that should be in the session
@@ -100,60 +100,4 @@ RSpec.describe TeamsController, type: :controller do
     end
   end
 
-  describe "PUT #update" do
-    context "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
-
-      it "updates the requested team" do
-        team = Team.create! valid_attributes
-        put :update, {:id => team.to_param, :team => new_attributes}, valid_session
-        team.reload
-        skip("Add assertions for updated state")
-      end
-
-      it "assigns the requested team as @team" do
-        team = Team.create! valid_attributes
-        put :update, {:id => team.to_param, :team => valid_attributes}, valid_session
-        expect(assigns(:team)).to eq(team)
-      end
-
-      it "redirects to the team" do
-        team = Team.create! valid_attributes
-        put :update, {:id => team.to_param, :team => valid_attributes}, valid_session
-        expect(response).to redirect_to(team)
-      end
-    end
-
-    context "with invalid params" do
-      it "assigns the team as @team" do
-        team = Team.create! valid_attributes
-        put :update, {:id => team.to_param, :team => invalid_attributes}, valid_session
-        expect(assigns(:team)).to eq(team)
-      end
-
-      it "re-renders the 'edit' template" do
-        team = Team.create! valid_attributes
-        put :update, {:id => team.to_param, :team => invalid_attributes}, valid_session
-        expect(response).to render_template("edit")
-      end
-    end
-  end
-
-  describe "DELETE #destroy" do
-    it "destroys the requested team" do
-      team = Team.create! valid_attributes
-      expect {
-        delete :destroy, {:id => team.to_param}, valid_session
-      }.to change(Team, :count).by(-1)
-    end
-
-    it "redirects to the teams list" do
-      team = Team.create! valid_attributes
-      delete :destroy, {:id => team.to_param}, valid_session
-      expect(response).to redirect_to(teams_url)
-    end
-  end
-
-end
+ end
