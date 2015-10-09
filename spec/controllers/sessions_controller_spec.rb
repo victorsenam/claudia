@@ -88,4 +88,17 @@ RSpec.describe SessionsController, type: :controller do
     end
   end
 
+  describe "authentication_check" do
+    it "sets @curr_user as nil if not logged in", :pending
+    it "sets @curr_user as the logged in user if logged in", :pending
+# TODO Find a better description for the below test
+    it "updates the session date if the session has a valid date (for session keeping)", :pending # I mean, if it didn't expire yet
+    it "kills the current session if it has already expired", :pending
+  end
+
+  describe "authentication_force" do
+    it "redirects to login page if not logged in", :pending
+# TODO I really guess that's all... to think
+  end
+
 end
