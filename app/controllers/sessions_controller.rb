@@ -16,7 +16,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session.destroy(:user_id)
+    reset_session
+    flash['notice'] = "Deslogado com Sucesso!"
     redirect_to '/sessions/new'
   end
 end
