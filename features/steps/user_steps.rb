@@ -64,12 +64,3 @@ Given(/^I am logged in with "(.*?)" as "(.*?)"$/) do |val, attr|
   fill_in 'Senha', with: @last_user[:password]
   find( 'Enviar' ).click
 end
-
-Given(/^I have a valid user session$/) do
-  pending # express the regexp above with the code you wish you had
-end
-
-Given(/^I have a valid admin session$/) do
-  pending # express the regexp above with the code you wish you had
-end
-
