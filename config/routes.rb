@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :teams
   get 'sessions/new', to: 'sessions#new'
   post 'sessions/create', to: 'sessions#create'
   get 'sessions/destroy', to: 'sessions#destroy'
