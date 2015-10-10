@@ -1,0 +1,16 @@
+Relatório da Primeira Entrega do Projeto de MAC0242
+Grupo: Cláudia and the diamonds
+    Caio Barrocal
+    Pedro Nepomuceno
+    Nathan Benedetto
+    Helio Asakura
+    Victor Sena
+
+Funcionalidades implementadas:
+- Cadastro de usuário novo
+- Login de usuário
+
+Funcionalidades em implementação:
+- Checagem de login de usuário
+- Listagem de Eventos
+- Montagem de Equipes
