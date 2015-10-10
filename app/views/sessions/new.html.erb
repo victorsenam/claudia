@@ -1,6 +1,7 @@
-<h1>Login</h1>
 
-<%= form_tag sessions_create_path do %>
+<%=image_tag("login_icon.png", alt: "login icon", :class => "center_image" )%>
+
+<%= form_tag sessions_create_path, :id => 'form' do %>
   <% if @errors.any? %>
     <div id="error_explanation">
       <h2>Falha no Login</h2>
@@ -14,13 +15,15 @@
   <% end %>
 
   <div class="field">
-    <%= label_tag :email, "Email" %>
-    <%= text_field_tag :email %>
+    <%= label_tag :email, "Email" %><br />
+      <%= text_field_tag :email %>
   </div>
 
   <div class="field">
-    <%= label_tag :password, "Senha" %>
+    <%= label_tag :password, "Senha" %> <br />
     <%= password_field_tag :password %>
   </div>
-  <%= submit_tag "Entrar" %>
+  <%= submit_tag "Entrar", :class => 'button' %>
+  <%= button_to "Cadastrar", new_user_path, method: 'get', :class => 'button' %>
 <% end %>
+

@@ -21,6 +21,7 @@
     margin: auto;
     display: block;
     width: 15%;
+    margin-bottom: 30px;
 }
 
 #form {
@@ -28,4 +29,18 @@
     display:block;
     width: 20%;
     
+}
+
+h1 {
+
+    text-align: center;
+    margin-bottom: 40px;
+    color: #404041;
+}
+
+.button {
+
+    width: 80px;
+    padding: 10px 0 10px 0;
+    border-radius: 0;
 }
