@@ -7,6 +7,6 @@ Grupo: Cláudia and the diamonds
     Victor Sena
 
 Na primeira parte do projeto o grupo enfrentou várias dificuldades técnicas com o projeto. Foi bastante difícil se adaptar aos métodos ágeis para desenvolver o software e, além disso, foi difícil descobrir algumas coisas sobre o ruby durante o desenvolvimento do projeto.
-Apesar disso, acreditamos estar fazendo um trabalho organizado. Por causa das dificuldades enfrentadas nós entendemos um pouco mais sobre BDD e TDD, a diferença entre os dois e como usá-los em conjunto, os conceitos estão, agora, considerávelmente mais concretos para o grupo como um todo do que estavam quando começamos a realizar o desenvolvimento.
-Num todo, a primeira parte do projeto serviu considerávelmente bem para o aprendizado sobre ruby e métodos ágeis e para se acostumar com esse método novo de desenvolver software e se organizar.
+Apesar disso, acreditamos estar fazendo um trabalho organizado. Por causa das dificuldades enfrentadas nós entendemos um pouco mais sobre BDD e TDD, a diferença entre os dois e como usá-los em conjunto, os conceitos estão, agora, consideravelmente mais concretos para o grupo como um todo do que estavam quando começamos a realizar o desenvolvimento.
 Foi especialmente difícil se acostumar com os testes, nós reescrevemos os testes para a mesma feature mais de uma vez antes de implementar porque, para nós, a distinção entre o que devia ser Teste de Unidade e o que devia ser Teste de Comportamento estava mal compreendida. Agora, porém, com a prática, acreditamos que isso tenha mudado.
+Num todo, a primeira parte do projeto serviu consideravelmente bem para o aprendizado sobre ruby e métodos ágeis e para se acostumar com esse método novo de desenvolver software e se organizar.
