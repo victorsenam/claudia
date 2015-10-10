@@ -1,0 +1,8 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+	<b> User(s) :</b> <%=h @team.users.collect {|r| r.name}.join(', ') %>
+</p>
+
+<%= link_to 'Edit', edit_team_path(@team) %> |
+<%= link_to 'Back', teams_path %>

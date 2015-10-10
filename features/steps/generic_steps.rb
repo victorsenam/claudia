@@ -19,5 +19,5 @@ Then(/^I should not see "(.*?)"$/) do |text|
 end
 
 Given(/^I am at the root page$/) do
-  pending # express the regexp above with the code you wish you had
+  visit root_path
 end

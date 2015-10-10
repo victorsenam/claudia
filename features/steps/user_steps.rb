@@ -3,7 +3,7 @@ Given(/^I am on the user signup page$/) do
 end
 
 Given(/^I am at the login page$/) do
-  visit '/users/login'
+  visit '/sessions/new'
 end
 
 When(/^I try to access the users list$/) do
@@ -29,17 +29,10 @@ Given(/^I have a registered user$/) do
   create(:user, @last_user)
 end
 
-Given(/^I have a registered user with "(.*?)" as "(.*?)"$/) do |special_value, special_field|
-  @last_user = attributes_for(:user, special_field.to_sym => special_value)
-  create(:user, @last_user)
-end
-
-Given(/^I have a valid user session$/) do
-  pending # express the regexp above with the code you wish you had
-end
-
-Given(/^I have a valid admin session$/) do
-  pending # express the regexp above with the code you wish you had
+Given(/^That user's "(.*?)" is "(.*?)"$/) do |attr, value|
+  user = User.find_by_id(@last_user[:id])
+  user.update_attribute(attr.to_sym, value)
+  @last_user[attr.to_sym] = value
 end
 
 Then(/^I should see every user's "(.*?)"$/) do |attr|
@@ -58,17 +51,14 @@ Then(/^I should see info for user "(.*?)"$/) do |user_name|
 end
 
 When(/^I fill that user's "(.*?)" in "(.*?)"$/) do |attribute, field|
-  val = @last_user.send(attribute.to_sym)
+  val = @last_user[attribute.to_sym]
   fill_in field, with: val
 end
 
-Given(/^I am logged in with "(.*?)" as "(.*?)"$/) do |val, attr|
-  @last_user = attributes_for(:user, attr.to_sym => val)
-  create(:user, @last_user)
+Given(/^I am logged in as that user$/) do
+  visit '/sessions/new'
 
-  visit '/users/login'
-
-  fill_in 'Email', with: @last_user.email
-  fill_in 'Senha', with: @last_user.password
-  find( 'Enviar' ).click
+  fill_in 'Email', with: @last_user[:email]
+  fill_in 'Senha', with: @last_user[:password]
+  find( '[value=Entrar]' ).click
 end

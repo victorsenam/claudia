@@ -1,0 +1,26 @@
+<h1>Login</h1>
+
+<%= form_tag sessions_create_path do %>
+  <% if @errors.any? %>
+    <div id="error_explanation">
+      <h2>Falha no Login</h2>
+
+      <ul>
+      <% @errors.each do |message| %>
+          <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= label_tag :email, "Email" %>
+    <%= text_field_tag :email %>
+  </div>
+
+  <div class="field">
+    <%= label_tag :password, "Senha" %>
+    <%= password_field_tag :password %>
+  </div>
+  <%= submit_tag "Entrar" %>
+<% end %>

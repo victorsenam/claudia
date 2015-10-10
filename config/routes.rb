@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
   
+  resources :teams
+  get 'sessions/new', to: 'sessions#new'
+  post 'sessions/create', to: 'sessions#create'
+  get 'sessions/destroy', to: 'sessions#destroy'
+
   # users routes
-  get 'users/login' => 'users#login'
   resources :users
+  root :to => 'users#index'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -36,11 +36,23 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
+  has_many :team_members
+  has_many :teams, :through => :team_members
+
   def override_rank
     self.rank = PENDING
   end
 
   def normalize_email
     self.email.downcase! if self.email
+  end
+
+
+  def self.search(search)
+    if search
+      self.where("name like ?", "%#{search}%")
+    else
+      self.all
+    end
   end
 end
