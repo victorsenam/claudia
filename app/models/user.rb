@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   validates :name, presence: { message: " vazio!" }
 
   validates :password, 
-    presence: { message: "é um campo obrigatório." },
+    
     confirmation: { message: " não bate." },
     length: { minimum: 6, message: " deve ter pelo menos 6 caracteres." }
 
