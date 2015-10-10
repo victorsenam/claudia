@@ -22,7 +22,6 @@ class TeamsController < ApplicationController
   def edit
     @users={}
     User.all.collect { |u| @users[u.name]=u.id }
-    p @users
   end
 
   # POST /teams

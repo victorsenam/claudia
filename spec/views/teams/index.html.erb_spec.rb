@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "teams/index", type: :view do
+RSpec.describe "teams/index", type: :view, pending: true do
   before(:each) do
     assign(:teams, [
       Team.create!(),
