@@ -11,4 +11,13 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe SessionsHelper, type: :helper do
+  describe "get logged user" do
+    it "returns logged user if there is any" do
+      pending "test writing"
+    end
+
+    it "returns nil if there's no login" do
+      pending "test writing"
+    end
+  end
 end
