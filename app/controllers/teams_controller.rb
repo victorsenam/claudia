@@ -30,13 +30,16 @@ class TeamsController < ApplicationController
   # POST /teams.json
   def create
     @team = Team.new(team_params)
-    handle_teams_users
+    
 
     respond_to do |format|
       if @team.save
+        handle_teams_users
         format.html { redirect_to @team, notice: 'Equipe pronta para receber usuários.' }
         format.json { render :show, status: :created, location: @team }
       else
+        @users={}
+        User.all.collect { |u| @users[u.name]=u.id }
         format.html { render :new }
         format.json { render json: @team.errors, status: :unprocessable_entity }
       end
