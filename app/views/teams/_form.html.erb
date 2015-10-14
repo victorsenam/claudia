@@ -16,9 +16,11 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
+    <% if @users %>
     <select id="user_ids" name="user_ids[]" multiple="multiple">
      <%= options_for_select(@users,@team.users.collect {|d| d.id}) %>
     </select>
+    <% end%>
   </div>
   <div class="actions">
     <%= f.submit %>
