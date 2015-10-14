@@ -15,6 +15,8 @@ class TeamsController < ApplicationController
 
   # GET /teams/new
   def new
+    @users={}
+    User.all.collect { |u| @users[u.name]=u.id }
     @team = Team.new
   end
 
@@ -28,6 +30,7 @@ class TeamsController < ApplicationController
   # POST /teams.json
   def create
     @team = Team.new(team_params)
+    handle_teams_users
 
     respond_to do |format|
       if @team.save
@@ -43,6 +46,7 @@ class TeamsController < ApplicationController
   # PATCH/PUT /teams/1
   # PATCH/PUT /teams/1.json
   def update
+    handle_teams_users
     respond_to do |format|
       if @team.update(team_params)
         format.html { redirect_to @team, notice: 'Team was successfully updated.' }
@@ -53,18 +57,6 @@ class TeamsController < ApplicationController
       end
     end
   end
-
-
-  private
-  def handle_teams_users
-    if params['user_ids']
-      @team.users.clear
-      users = params['user_ids'].map { |id| User.find(id)}
-      @team.users << users
-    end
-  end
-
-
 
 
   # DELETE /teams/1
@@ -78,6 +70,13 @@ class TeamsController < ApplicationController
   end
 
   private
+  def handle_teams_users
+    if params['user_ids']
+      @team.users.clear
+      users = params['user_ids'].map { |id| User.find(id)}
+      @team.users << users
+    end
+  end
     # Use callbacks to share common setup or constraints between actions.
     def set_team
       @team = Team.find(params[:id])

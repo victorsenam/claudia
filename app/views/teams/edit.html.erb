@@ -1,14 +1,7 @@
 <h1>Editing Team</h1>
 
-<% form_tag :action => 'update', :id => @team do %>
+<%= form_tag :action => 'update', :id => @team do %>
  <%= render :partial => 'form' %>
-<p>
-	<select id="user_ids" name="user_ids[]" multiple="multiple">
-		<%= options_for_select(@users,@team.users.collect {|d| d.id}) %>
-	</select>
-</p>
-
-<%= submit_tag 'Edit' %>
 
 <% end %>
 

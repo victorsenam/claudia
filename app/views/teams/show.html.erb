@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+	<b><%= @team.name %></b><br>
 	<b> User(s) :</b> <%=h @team.users.collect {|r| r.name}.join(', ') %>
 </p>
 

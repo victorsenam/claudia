@@ -15,6 +15,11 @@
     <%= f.label :name, "Nome do time" %><br>
     <%= f.text_field :name %>
   </div>
+  <div class="field">
+    <select id="user_ids" name="user_ids[]" multiple="multiple">
+     <%= options_for_select(@users,@team.users.collect {|d| d.id}) %>
+    </select>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
