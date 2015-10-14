@@ -2,7 +2,7 @@ require 'faker'
 
 FactoryGirl.define do
   factory :user do
-    sequence(:id)
+    sequence(:id,2)
     name { Faker::Name.name }
     email { Faker::Internet.email("#{name}") }
     password { Faker::Internet.password(8, 30) }

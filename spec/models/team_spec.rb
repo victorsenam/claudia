@@ -7,6 +7,7 @@ describe Team, type: :model do
     end
 
     it {should validate_presence_of(:name).with_message("Denomine a nova equipe.")}
+    it {should validate_presence_of(:users).with_message("Time sem usuários.")}
 
     
 
