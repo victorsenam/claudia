@@ -218,6 +218,7 @@ DEPENDENCIES
   jquery-rails
   nyan-cat-formatter
   rails (= 4.2.4)
+  rake
   rspec-rails (= 3.3.3)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
