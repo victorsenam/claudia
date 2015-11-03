@@ -25,8 +25,15 @@ Feature: User Login
         And I am logged in as that user
         And I am at the root page
         When I click on "Logout"
-        Then I should see "Login"
+        Then I should see "Deslogado com Sucesso"
 
     Scenario: Logged in users should be able to see pages avalailable for his permission level
+        Given I have a registered user
+        And That user's "rank" is "1"
+        And I am logged in as that user
+        When I try to access the login test page
+        Then I should see "Autenticado com Sucesso!"
 
     Scenario: Unlogged users should not not be able to see restricted pages
+        When I try to access the login test page
+        Then I should see "Fazer Login"
