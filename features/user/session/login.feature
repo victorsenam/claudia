@@ -26,3 +26,7 @@ Feature: User Login
         And I am at the root page
         When I click on "Logout"
         Then I should see "Login"
+
+    Scenario: Logged in users should be able to see pages avalailable for his permission level
+
+    Scenario: Unlogged users should not not be able to see restricted pages
