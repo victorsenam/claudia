@@ -86,28 +86,4 @@ RSpec.describe SessionsController, type: :controller do
       expect( flash.to_hash ).to have_key('notice')
     end
   end
-
-  describe "force_authentication" do
-    it "redirects to login page if not logged in" do
-      pending "needs review"
-      get '/users'
-      expect( response ).to redirect_to('/sessions/new')
-    end
-
-    it "redirects to restricted page if logged user's permission is lower than necessary" do
-      pending 'test writing'
-    end
-
-    it "goes on if user can access resource" do
-      pending 'test writing'
-    end
-
-    it "destroys expired sessions" do
-      pending 'test writing'
-    end
-
-    it "extends validation of non expired sessions" do
-      pending 'test writing'
-    end
-  end
 end
