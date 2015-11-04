@@ -32,7 +32,7 @@ RSpec.describe ApplicationController, type: :controller do
       end
 
       it "destroys expired sessions" do
-       from =  
+        
       end
 
       it "extends validation of non expired sessions" do
