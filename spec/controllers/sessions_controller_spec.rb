@@ -31,22 +31,20 @@ RSpec.describe SessionsController, type: :controller do
 
       post :create, {email: user_attr[:email], password: user_attr[:password]}
 
-      expect( session ).not_to be_empty
-      expect( session.to_hash ).to have_key('user_id')
-      expect( flash.to_hash ).to have_key('notice')
+      expect( session[:auth][:login_time] ).to be >= (30.minutes.ago)
+      expect( session[:auth][:user_id] ).to equal(user.id)
       expect( flash[:notice] ).not_to be_empty
       expect( flash.to_hash ).not_to have_key('errors')
     end
 
     it "should not login pending users" do
       user_attr = attributes_for(:user)
-      user = create(:user, user_attr)
+      user = create(:user, user_attr) # By default, it's a pending user
     
       post :create, {email: user_attr[:email], password: user_attr[:password]}
 
-      expect( session.to_hash ).not_to have_key('user_id')
+      expect( session.to_hash ).not_to have_key('auth')
       expect( flash.to_hash ).not_to have_key('notice')
-      expect( flash.to_hash ).to have_key('errors')
       expect( flash[:errors] ).not_to be_empty
     end
 
@@ -55,9 +53,8 @@ RSpec.describe SessionsController, type: :controller do
 
       post :create, {email: user_attr[:email], password: user_attr[:password]}
 
-      expect( session.to_hash ).not_to have_key('user_id')
+      expect( session.to_hash ).not_to have_key('auth')
       expect( flash.to_hash ).not_to have_key('notice')
-      expect( flash.to_hash ).to have_key('errors')
       expect( flash[:errors] ).not_to be_empty
     end
 
@@ -67,9 +64,8 @@ RSpec.describe SessionsController, type: :controller do
       
       post :create, {email: user_attr[:email], password: (user_attr[:password]+'suffix')}
 
-      expect( session.to_hash ).not_to have_key('user_id')
+      expect( session.to_hash ).not_to have_key('auth')
       expect( flash.to_hash ).not_to have_key('notice')
-      expect( flash.to_hash ).to have_key('errors')
       expect( flash[:errors] ).not_to be_empty
     end
   end
@@ -77,13 +73,12 @@ RSpec.describe SessionsController, type: :controller do
   describe "GET #destroy" do
     it "destroy all session variables" do
       get :destroy, nil, { user_id: 9 } # arbritary user id
-      expect( session.to_hash ).not_to have_key('user_id')
+      expect( session.to_hash ).not_to have_key('auth')
     end
 
     it "sets a success notice" do
       get :destroy, nil, {param: 'content'}
-      expect( flash ).not_to be_empty
-      expect( flash.to_hash ).to have_key('notice')
+      expect( flash[:notice] ).not_to be_empty
     end
   end
 end
