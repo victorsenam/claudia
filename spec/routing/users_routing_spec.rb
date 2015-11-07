@@ -17,6 +17,7 @@ RSpec.describe UsersController, type: :routing do
 
     it "routes to #edit" do
       expect(:get => "/users/1/edit").to route_to("users#edit", :id => "1")
+      expect(:get => "/users/edit").to route_to("users#edit")
     end
 
     it "routes to #create" do

@@ -53,6 +53,12 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe "GET #edit" do
+    it "sets id if it's unsetted" do
+      user = create(:user, valid_attributes)
+      get :edit, nil, valid_session
+      expect(assigns(:user)).to eq(user)
+    end
+
     it "renders the 'edit' template" do
       user = create(:user, valid_attributes)
       get :edit, {id: user.id}, valid_session
@@ -63,6 +69,12 @@ RSpec.describe UsersController, type: :controller do
       user = create(:user, valid_attributes)
       get :edit, {id: user.id}, valid_session
       expect( assigns(:user) ).to eq(user)
+    end
+
+    it "it doesn't allow non-admins to change other users" do
+      user = create(:user, valid_attributes)
+      get :edit, {id: user.id + 1}, valid_session
+      expect( response ).to redirect_to( root_path )
     end
   end
 

@@ -1,0 +1,3 @@
+- Falta redirecionar users#edit se o cara tentar acessar o edit de outro usuario
+- Falta ver se o cucumber ta passsando certo
+- Falta testar na mão

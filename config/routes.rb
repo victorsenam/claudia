@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
   
+  root :to => 'users#edit'
+
   resources :teams
   get 'sessions/new', to: 'sessions#new'
   post 'sessions/create', to: 'sessions#create'
   get 'sessions/destroy', to: 'sessions#destroy'
-  root :to => 'sessions#new'
 
   # users routes
+  get 'users/edit', to: 'users#edit'
   resources :users
 
 

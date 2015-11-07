@@ -67,6 +67,7 @@ class UsersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       force_authentication
+      params = {id: session[:auth][:user_id]} if !params or !params[:id]
       has_to_be_admin unless params[:id] == session[:auth][:user_id]
 
       @user = User.find(params[:id])
