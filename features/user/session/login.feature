@@ -27,13 +27,13 @@ Feature: User Login
         When I click on "Logout"
         Then I should see "Deslogado com Sucesso"
 
-    Scenario: Logged in users should be able to see pages avalailable for his permission level
+    Scenario: Logged in users should be able to see their profiles
         Given I have a registered user
         And That user's "rank" is "1"
         And I am logged in as that user
-        When I try to access the login test page
-        Then I should see "Autenticado com Sucesso!"
+        When I try to access the edit page
+        Then I should see that user's email
 
     Scenario: Unlogged users should not not be able to see restricted pages
-        When I try to access the login test page
+        When I try to access the edit page
         Then I should see "Fazer Login"

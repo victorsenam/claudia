@@ -49,13 +49,10 @@ RSpec.describe ApplicationController, type: :controller do
         expect( session[:auth][:login_time] ).to be >= 5.minutes.ago
       end
 
-      it "should set @current_user to the current user" do
-        user = create(:user)
-        user.rank = User::ACCEPTED
-        user.save!
-        get :user_restricted_page, nil, { auth: {user_id: user.id, login_time: Time.now()} }
+      it "destroys invalid user's sessions" do
+        get :user_restricted_page, nil, { auth: {user_id: 1, login_time: Time.now()} }
 
-        expect( assigns(:current_user) ).not_to be_nil
+        expect( response ).to redirect_to( sessions_destroy_path )
       end
     end
 

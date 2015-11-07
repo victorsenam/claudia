@@ -34,7 +34,7 @@ RSpec.describe UsersController, type: :controller do
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # UsersController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
+  let(:valid_session) { { auth: { login_time: Time.now(), user_id: valid_attributes[:id] } } }
 
   describe "GET #index" do
     it "assigns all users as @users" do
@@ -47,8 +47,22 @@ RSpec.describe UsersController, type: :controller do
   describe "GET #show" do
     it "assigns the requested user as @user" do
       user = User.create! valid_attributes
-      get :show, {:id => user.to_param}, valid_session
+      get :show, {id: valid_attributes[:id]}, valid_session
       expect(assigns(:user)).to eq(user)
+    end
+  end
+
+  describe "GET #edit" do
+    it "renders the 'edit' template" do
+      user = create(:user, valid_attributes)
+      get :edit, {id: user.id}, valid_session
+      expect( response ).to render_template( 'edit' )
+    end
+
+    it "assigns the current user as @user" do
+      user = create(:user, valid_attributes)
+      get :edit, {id: user.id}, valid_session
+      expect( assigns(:user) ).to eq(user)
     end
   end
 
@@ -91,5 +105,4 @@ RSpec.describe UsersController, type: :controller do
       end
     end
   end
-
 end

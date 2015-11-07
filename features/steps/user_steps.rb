@@ -62,3 +62,12 @@ Given(/^I am logged in as that user$/) do
   fill_in 'Senha', with: @last_user[:password]
   find( '[value=Entrar]' ).click
 end
+
+When(/^I try to access the edit page$/) do
+  visit '/users/edit'
+end
+
+Then(/^I should see that user's email$/) do
+  expect( page ).to have_content @last_user[:email]
+end
+

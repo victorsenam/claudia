@@ -2,4 +2,11 @@
 
 	<div id="img_placeholder"></div>
 
+    <span id="user_login">
+        <% if @current_user %>
+            <%= @current_user.name %>
+        <% else %>
+            <%= link_to "Logout", sessions_destroy_path %>
+        <% end %>
+    </span>
 </div>
