@@ -10,6 +10,12 @@
 <%= render 'header' %>
 <body>
 
+<% if flash[:notice] %>
+<div id="notice">
+  <%= flash[:notice] %>
+</div>
+<% end %>
+
 <div class="content">
 	<%= yield %>
 </div>

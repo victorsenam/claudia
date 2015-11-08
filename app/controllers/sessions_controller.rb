@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
         flash[:errors] = ["Usuário pendente, por favor, aguarde sua aceitação no sistema."]
         redirect_to sessions_new_path
       else
-        session[:auth] = { user_id: user.id, login_time: Time.now() }
+        session[:auth] = { 'user_id' => user.id, 'login_time' => Time.now() }
         flash[:notice] = "Logado com Sucesso!"
         redirect_to root_path
       end

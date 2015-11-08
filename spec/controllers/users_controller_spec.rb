@@ -34,7 +34,7 @@ RSpec.describe UsersController, type: :controller do
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # UsersController. Be sure to keep this updated too.
-  let(:valid_session) { { auth: { login_time: Time.now(), user_id: valid_attributes[:id] } } }
+  let(:valid_session) { { auth: { login_time: Time.now(), user_id: valid_attributes[:id] }.stringify_keys  } }
 
   describe "GET #index" do
     it "assigns all users as @users" do
@@ -47,7 +47,10 @@ RSpec.describe UsersController, type: :controller do
   describe "GET #show" do
     it "assigns the requested user as @user" do
       user = User.create! valid_attributes
+      user.rank = User::ACCEPTED
+      user.save!
       get :show, {id: valid_attributes[:id]}, valid_session
+
       expect(assigns(:user)).to eq(user)
     end
   end
@@ -55,26 +58,49 @@ RSpec.describe UsersController, type: :controller do
   describe "GET #edit" do
     it "sets id if it's unsetted" do
       user = create(:user, valid_attributes)
+      user.rank = User::ACCEPTED
+      user.save!
+
       get :edit, nil, valid_session
       expect(assigns(:user)).to eq(user)
     end
 
     it "renders the 'edit' template" do
       user = create(:user, valid_attributes)
-      get :edit, {id: user.id}, valid_session
+      user.rank = User::ACCEPTED
+      user.save!
+
+      get :edit, {id: valid_attributes[:id]}, valid_session
       expect( response ).to render_template( 'edit' )
     end
 
     it "assigns the current user as @user" do
       user = create(:user, valid_attributes)
-      get :edit, {id: user.id}, valid_session
+      user.rank = User::ACCEPTED
+      user.save!
+
+      get :edit, {id: valid_attributes[:id]}, valid_session
       expect( assigns(:user) ).to eq(user)
     end
 
-    it "it doesn't allow non-admins to change other users" do
+    it "doesn't allow non-admins to change other users" do
       user = create(:user, valid_attributes)
-      get :edit, {id: user.id + 1}, valid_session
+      user.rank = User::ACCEPTED
+      user.save!
+
+      get :edit, {id: valid_attributes[:id] + 1}, valid_session
       expect( response ).to redirect_to( root_path )
+    end
+
+    it "allows admins to edit anyone" do
+      user = create(:user, valid_attributes)
+      user.rank = User::ADMIN
+      user.save!
+
+      other = create(:user)
+
+      get :edit, {id: other.id}, valid_session
+      expect( response ).to have_http_status(:success)
     end
   end
 

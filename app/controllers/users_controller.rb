@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action only: [:show, :edit, :update, :destroy] { set_user(params) }
   before_action :force_authentication, only: [:show, :edit, :update, :destroy]
 
   # GET /users
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'Sucesso! Aguarde a confirmação do seu cadastro' }
+        format.html { redirect_to sessions_new_path, notice: 'Sucesso! Aguarde a confirmação do seu cadastro' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -65,18 +65,23 @@ class UsersController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      force_authentication
-      params = {id: session[:auth][:user_id]} if !params or !params[:id]
-      has_to_be_admin unless params[:id] == session[:auth][:user_id]
+    def set_user(params)
+      return false unless force_authentication
+      params = {id: session[:auth]['user_id']} if !params or params[:id] == nil
+      return false unless params[:id].to_i == session[:auth]['user_id'].to_i or has_to_be_admin
 
+      if !User.exists?(params[:id])
+        flash[:errors] = ["Usuário não existente"]
+        redirect_to root_path
+        return false
+      end
       @user = User.find(params[:id])
+      return true
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:name, :email, :email_confirmation, :password, :password_confirmation, :password_digest, :rank)
     end
-
 
 end

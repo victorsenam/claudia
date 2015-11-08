@@ -67,7 +67,7 @@ When(/^I try to access the edit page$/) do
   visit '/users/edit'
 end
 
-Then(/^I should see that user's email$/) do
-  expect( page ).to have_content @last_user[:email]
+Then(/^The email field should have that user's email$/) do
+  expect( find_field('user[email]').value ).to eq(@last_user[:email])
 end
 

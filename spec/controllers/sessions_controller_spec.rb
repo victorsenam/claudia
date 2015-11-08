@@ -30,8 +30,8 @@ RSpec.describe SessionsController, type: :controller do
 
       post :create, {email: user_attr[:email], password: user_attr[:password]}
 
-      expect( session[:auth][:login_time] ).to be >= (30.minutes.ago)
-      expect( session[:auth][:user_id] ).to equal(user.id)
+      expect( session[:auth]['login_time'] ).to be >= (30.minutes.ago)
+      expect( session[:auth]['user_id'] ).to equal(user.id)
       expect( flash[:notice] ).not_to be_empty
       expect( flash.to_hash ).not_to have_key('errors')
     end

@@ -3,10 +3,12 @@
 	<div id="img_placeholder"></div>
 
     <span id="user_login">
-        <% if @current_user %>
-            <%= @current_user.name %>
-        <% else %>
+        <% if session[:auth] %>
+            <%= session[:auth]['user_id'] %>
             <%= link_to "Logout", sessions_destroy_path %>
+        <% else %>
+            <%= link_to "Login", sessions_new_path %>
         <% end %>
     </span>
+
 </div>

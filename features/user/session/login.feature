@@ -24,7 +24,7 @@ Feature: User Login
         And That user's "rank" is "1"
         And I am logged in as that user
         And I am at the root page
-        When I click on "Logout"
+        When I click on a link with "Logout" as text
         Then I should see "Deslogado com Sucesso"
 
     Scenario: Logged in users should be able to see their profiles
@@ -32,8 +32,8 @@ Feature: User Login
         And That user's "rank" is "1"
         And I am logged in as that user
         When I try to access the edit page
-        Then I should see that user's email
+        Then The email field should have that user's email
 
     Scenario: Unlogged users should not not be able to see restricted pages
         When I try to access the edit page
-        Then I should see "Fazer Login"
+        Then I should see "Login"

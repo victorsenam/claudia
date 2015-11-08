@@ -35,7 +35,7 @@ RSpec.describe ApplicationController, type: :controller do
         user = create(:user)
         user.rank = User::ACCEPTED
         user.save!
-        get :user_restricted_page, nil, { auth: {user_id: user.id, login_time: 1.year.ago} }        
+        get :user_restricted_page, nil, { auth: {user_id: user.id, login_time: 1.year.ago}.stringify_keys }
 
         expect( response ).to redirect_to( sessions_destroy_path )
       end
@@ -44,13 +44,21 @@ RSpec.describe ApplicationController, type: :controller do
         user = create(:user)
         user.rank = User::ACCEPTED
         user.save!
-        get :user_restricted_page, nil, { auth: {user_id: user.id, login_time: 10.minutes.ago} }
+        get :user_restricted_page, nil, { auth: {user_id: user.id, login_time: 10.minutes.ago}.stringify_keys }
 
-        expect( session[:auth][:login_time] ).to be >= 5.minutes.ago
+        expect( session[:auth]['login_time'] ).to be >= 5.minutes.ago
       end
 
       it "destroys invalid user's sessions" do
-        get :user_restricted_page, nil, { auth: {user_id: 1, login_time: Time.now()} }
+        get :user_restricted_page, nil, { auth: {user_id: 1, login_time: Time.now()}.stringify_keys }
+
+        expect( response ).to redirect_to( sessions_destroy_path )
+      end
+
+      it "destroys pending user's sessions" do
+        user = create(:user)
+
+        get :user_restricted_page, nil, { auth: {user_id: user.id, login_time: Time.now() }.stringify_keys }
 
         expect( response ).to redirect_to( sessions_destroy_path )
       end
@@ -61,7 +69,7 @@ RSpec.describe ApplicationController, type: :controller do
         user = create(:user)
         user.rank = User::ACCEPTED
         user.save!
-        get :admin_restricted_page, nil, { auth: {user_id: user.id, login_time: Time.now()} }
+        get :admin_restricted_page, nil, { auth: {user_id: user.id, login_time: Time.now()}.stringify_keys  }
 
         expect( response ).to redirect_to(root_path)
         expect( flash[:errors] ).not_to be_empty
@@ -71,7 +79,8 @@ RSpec.describe ApplicationController, type: :controller do
         user = create(:user)
         user.rank = User::ADMIN
         user.save!
-        get :admin_restricted_page, nil, { auth: {user_id: user.id, login_time: Time.now()} }
+
+        get :admin_restricted_page, nil, { auth: {user_id: user.id, login_time: Time.now()}.stringify_keys }
 
         expect( response ).to have_http_status(:success)
         expect( flash.to_hash ).not_to have_key('errors')
@@ -81,7 +90,7 @@ RSpec.describe ApplicationController, type: :controller do
         user = create(:user)
         user.rank = User::SUPER
         user.save!
-        get :admin_restricted_page, nil, { auth: {user_id: user.id, login_time: Time.now()} }
+        get :admin_restricted_page, nil, { auth: {user_id: user.id, login_time: Time.now()}.stringify_keys  }
 
         expect( response ).to have_http_status(:success)
         expect( flash.to_hash ).not_to have_key('errors')
