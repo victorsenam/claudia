@@ -42,6 +42,35 @@ RSpec.describe UsersController, type: :controller do
       get :index, {}, valid_session
       expect(assigns(:users)).to eq([user])
     end
+
+    it "blocks non-admins" do
+     user = create(:user, valid_attributes)
+     user.rank = User::ACCEPTED
+     user.save!
+
+     get :index, {}, valid_session
+
+     expect( response ).to redirect_to(root_path)
+    end
+  end
+
+  describe "POST #index" do
+    it "redirects to itself on get" do
+      pending "test writing"
+    end
+
+    it "updates users ranks as posted" do
+      # create some users
+      # update some (but not all) of their ranks
+      # check if they were updated
+      pending "test writing"
+    end
+
+    it "blocks non-admins" do
+      # create a user
+      # try to access
+      pending "test writing"
+    end
   end
 
   describe "GET #show" do

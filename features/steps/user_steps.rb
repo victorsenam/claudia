@@ -77,3 +77,19 @@ Then(/^The email field should have that user's email$/) do
   expect( find_field('user[email]').value ).to eq(@last_user[:email])
 end
 
+When(/^I access the users listing page$/) do
+  visit '/users/'
+end
+
+When(/^I try to access the users listing page$/) do
+  visit '/users/'
+end
+
+When(/^I select "(.*?)" for that user$/) do |value|
+  select value, from: "rank[#{@last_user[:id]}]"
+end
+
+Then(/^That user should be an "(.*?)"$/) do |rank|
+  user = User.find(@last_user[:id])
+  expect( user.rank ).to eq( User.const_get(rank) )
+end
