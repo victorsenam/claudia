@@ -5,7 +5,7 @@ Feature: User Login
 
     Scenario: A valid user should be able to log in
         Given I have a registered user
-        And That user's "rank" is "1"
+        And That user is an "ACCEPTED"
         And I am at the login page
         When I fill that user's "password" in "Senha"
         And I fill that user's "email" in "Email"
@@ -21,7 +21,7 @@ Feature: User Login
 
     Scenario: I should be able to logout
         Given I have a registered user
-        And That user's "rank" is "1"
+        And That user is an "ACCEPTED"
         And I am logged in as that user
         And I am at the root page
         When I click on a link with "Logout" as text
@@ -29,7 +29,7 @@ Feature: User Login
 
     Scenario: Logged in users should be able to see their profiles
         Given I have a registered user
-        And That user's "rank" is "1"
+        And That user is an "ACCEPTED"
         And I am logged in as that user
         When I try to access the edit page
         Then The email field should have that user's email

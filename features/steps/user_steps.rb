@@ -35,6 +35,12 @@ Given(/^That user's "(.*?)" is "(.*?)"$/) do |attr, value|
   @last_user[attr.to_sym] = value
 end
 
+Given(/^That user is an? "(.*?)"$/) do |role|
+  user = User.find_by_id(@last_user[:id])
+  user.update_attribute(:rank, User.const_get(role))
+  @last_user[:rank] = User.const_get(role)
+end
+
 Then(/^I should see every user's "(.*?)"$/) do |attr|
   users = User.all
 
