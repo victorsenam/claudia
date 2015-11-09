@@ -7,6 +7,10 @@ RSpec.describe UsersController, type: :routing do
       expect(:get => "/users").to route_to("users#index")
     end
 
+    it "routes to #update_ranks" do
+      expect(:post => "/users/rank/update").to route_to("users#update_ranks")
+    end
+
     it "routes to #new" do
       expect(:get => "/users/new").to route_to("users#new")
     end
