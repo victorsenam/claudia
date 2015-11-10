@@ -1,7 +1,7 @@
 
-<%=image_tag("login_icon.png", alt: "login icon", :class => "center_image" )%>
+<%=image_tag("logoRed.png", alt: "login icon", :class => "center_image" )%>
 
-<%= form_tag sessions_create_path, :id => 'form' do %>
+<%= form_tag sessions_create_path, :id => 'user_form' do %>
   <% if @errors.any? %>
     <div id="error_explanation">
       <h2>Falha no Login</h2>

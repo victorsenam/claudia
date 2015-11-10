@@ -1,6 +1,8 @@
 <div class="header">
 
-  <div id="img_placeholder"></div>
+  <div id="logo_div">
+  	<%=image_tag("logo.png", alt: "logo", :class => "logo", :id => "logo" )%>
+  </div>
 
   <span id="user_login">
     <% if session[:auth] %>
