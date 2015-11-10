@@ -72,7 +72,7 @@ RSpec.describe ApplicationController, type: :controller do
         get :admin_restricted_page, nil, { auth: {user_id: user.id, login_time: Time.now()}.stringify_keys  }
 
         expect( response ).to redirect_to(root_path)
-        expect( flash[:errors] ).not_to be_empty
+        expect( flash[:notice] ).to be_truthy
       end
 
       it "allows admin users to admin around" do
@@ -83,7 +83,7 @@ RSpec.describe ApplicationController, type: :controller do
         get :admin_restricted_page, nil, { auth: {user_id: user.id, login_time: Time.now()}.stringify_keys }
 
         expect( response ).to have_http_status(:success)
-        expect( flash.to_hash ).not_to have_key('errors')
+        expect( flash[:notice] ).not_to be_truthy
       end
 
       it "allows root user to admin around" do
@@ -93,7 +93,7 @@ RSpec.describe ApplicationController, type: :controller do
         get :admin_restricted_page, nil, { auth: {user_id: user.id, login_time: Time.now()}.stringify_keys  }
 
         expect( response ).to have_http_status(:success)
-        expect( flash.to_hash ).not_to have_key('errors')
+        expect( flash[:notice] ).not_to be_truthy
       end
     end
   end

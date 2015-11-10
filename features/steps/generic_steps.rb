@@ -11,7 +11,7 @@ When(/^I click the "(.*?)" button$/) do |button_name|
 end
 
 Then(/^I should see "(.*?)"$/) do |text|
-  expect( page ).to have_content( text )
+  expect( page ).to have_content( /#{text}/i )
 end
 
 Then(/^I should not see "(.*?)"$/) do |text|

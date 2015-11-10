@@ -36,4 +36,4 @@ Feature: User Login
 
     Scenario: Unlogged users should not not be able to see restricted pages
         When I try to access the edit page
-        Then I should see "Login"
+        Then I should see "Por favor, faça o login"

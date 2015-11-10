@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "users/index", type: :view do
-  before(:each) do
+  before(:example) do
     @users = assign(:users, [
       build(:user),
       build(:user)
@@ -13,7 +13,16 @@ RSpec.describe "users/index", type: :view do
     @users.each do |user|
       assert_select "tr>td", :text => user.name
       assert_select "tr>td", :text => user.email
-      assert_select "tr>td", :text => user.rank.to_s
+    end
+  end
+
+  it "renders a form for a rank array with each user" do
+    render
+    assert_select "form[action=?][method=?]", users_rank_update_path, "post" do
+      @users.each do |user|
+          assert_select "select[name=?]", "rank[#{user.id}]"
+          assert_select "select[name=?]>option", "rank[#{user.id}]"
+      end
     end
   end
 end

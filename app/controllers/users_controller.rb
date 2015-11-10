@@ -81,7 +81,7 @@ class UsersController < ApplicationController
       return false unless params[:id].to_i == session[:auth]['user_id'].to_i or has_to_be_admin
 
       if !User.exists?(params[:id])
-        flash[:errors] = ["Usuário não existente"]
+        flash[:notice] = "Usuário não existente"
         redirect_to root_path
         return false
       end

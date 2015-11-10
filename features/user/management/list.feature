@@ -17,5 +17,6 @@ Feature: Users Listing
     Scenario: Regular users should not be able to access this page
         Given I have a registered user
         And That user is an "ACCEPTED"
+        And I am logged in as that user
         When I try to access the users listing page
         Then I should see "Deve ser admin"
