@@ -1,0 +1,11 @@
+Relatório da Primeira Entrega do Projeto de MAC0242
+Grupo: Cláudia and the diamonds
+    Caio Barrocal
+    Pedro Nepomuceno
+    Nathan Benedetto
+    Helio Asakura
+    Victor Sena
+
+Nesta segunda parte mudamos o layout do projeto, implementamos algumas funcionalidades novas e acreditamos ter uma base sólida e estável para desenvolver o resto do sistema. O grupo se preocupou muito em se manter no BDD e TDD mesmo que isso custasse uma boa demora para a implementação das features.
+Nós também organizamos o github em branches, mantendo na branch master uma implementação sempre estável do projeto, que deve estar passando em todos os testes e ser utilizável. Enquanto isso, as outras branches são usadas para implementar features progressivamente, com testes pendentes ou implementações não realizadas. Atualmente, existem duas branches ativas, a 'master' e a 'feature-teams', pois esta é a proxima feature a ser implementada.
+Pretendiamos entregar a feature teams hoje, porém, ela foi atrasada por causa de uma dependência com o sistema de login e autenticação, que estava incompleto. Nós demoramos mais que o esperado para resolver esta dependência e não trabalhamos mais na feature teams.
