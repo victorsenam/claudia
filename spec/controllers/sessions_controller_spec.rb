@@ -12,10 +12,10 @@ RSpec.describe SessionsController, type: :controller do
       get :new, nil, nil, errors: errors
       expect(assigns(:errors)).to eq( errors )
     end
-    
+
     it "should assign an empty array to errors on absence of errors" do
       get :new
-      
+
       expect(assigns(:errors)).to eq( [] )
     end
 
@@ -39,7 +39,7 @@ RSpec.describe SessionsController, type: :controller do
     it "should not login pending users" do
       user_attr = attributes_for(:user)
       user = create(:user, user_attr) # By default, it's a pending user
-    
+
       post :create, {email: user_attr[:email], password: user_attr[:password]}
 
       expect( session.to_hash ).not_to have_key('auth')
@@ -60,7 +60,7 @@ RSpec.describe SessionsController, type: :controller do
     it "should not login users with a wrong password" do
       user_attr = attributes_for(:user)
       user = create(:user, user_attr)
-      
+
       post :create, {email: user_attr[:email], password: (user_attr[:password]+'suffix')}
 
       expect( session.to_hash ).not_to have_key('auth')

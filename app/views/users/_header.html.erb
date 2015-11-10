@@ -1,14 +1,14 @@
 <div class="header">
 
-	<div id="img_placeholder"></div>
+  <div id="img_placeholder"></div>
 
-    <span id="user_login">
-        <% if session[:auth] %>
-            <%= session[:auth]['user_id'] %>
-            <%= link_to "Logout", sessions_destroy_path %>
-        <% else %>
-            <%= link_to "Login", sessions_new_path %>
-        <% end %>
-    </span>
+  <span id="user_login">
+    <% if session[:auth] %>
+      <%= session[:auth]['user_id'] %>
+      <%= link_to "Logout", sessions_destroy_path %>
+    <% else %>
+      <%= link_to "Login", sessions_new_path %>
+    <% end %>
+  </span>
 
 </div>

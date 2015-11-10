@@ -7,16 +7,16 @@
       <h2>Falha no Login</h2>
 
       <ul>
-      <% @errors.each do |message| %>
+        <% @errors.each do |message| %>
           <li><%= message %></li>
-      <% end %>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
   <div class="field">
     <%= label_tag :email, "Email" %><br />
-      <%= text_field_tag :email %>
+    <%= text_field_tag :email %>
   </div>
 
   <div class="field">

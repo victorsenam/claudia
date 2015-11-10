@@ -74,24 +74,24 @@ class UsersController < ApplicationController
 
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user(params)
-      return false unless force_authentication
-      params = {id: session[:auth]['user_id']} if !params or params[:id] == nil
-      return false unless params[:id].to_i == session[:auth]['user_id'].to_i or has_to_be_admin
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user(params)
+    return false unless force_authentication
+    params = {id: session[:auth]['user_id']} if !params or params[:id] == nil
+    return false unless params[:id].to_i == session[:auth]['user_id'].to_i or has_to_be_admin
 
-      if !User.exists?(params[:id])
-        flash[:notice] = "Usuário não existente"
-        redirect_to root_path
-        return false
-      end
-      @user = User.find(params[:id])
-      return true
+    if !User.exists?(params[:id])
+      flash[:notice] = "Usuário não existente"
+      redirect_to root_path
+      return false
     end
+    @user = User.find(params[:id])
+    return true
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def user_params
-      params.require(:user).permit(:name, :email, :email_confirmation, :password, :password_confirmation, :password_digest, :rank)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def user_params
+    params.require(:user).permit(:name, :email, :email_confirmation, :password, :password_confirmation, :password_digest, :rank)
+  end
 
 end

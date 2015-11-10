@@ -7,7 +7,7 @@ RSpec.describe "sessions/new.html.erb", type: :view do
     render
 
     assert_select "form[action=?][method=?]", sessions_create_path, "post" do
-      
+
       assert_select "input#email[name=?]", "email"
 
       assert_select "input#password[name=?]", "password"
@@ -20,7 +20,7 @@ RSpec.describe "sessions/new.html.erb", type: :view do
     assign(:errors, errors)
 
     render
-    
+
     errors.each do |error|
       expect( rendered ).to match error
     end

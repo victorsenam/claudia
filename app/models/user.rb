@@ -12,8 +12,8 @@ class User < ActiveRecord::Base
     :email_confirmation => "Confirmação de email",
     :name => "Nome"
   }
- 
- def self.human_attribute_name(attr, options={})
+
+  def self.human_attribute_name(attr, options={})
     HUMANIZED_ATTRIBUTES[attr.to_sym] || super
   end
 
@@ -21,15 +21,15 @@ class User < ActiveRecord::Base
   validates :name, presence: { message: " vazio!" }
 
   validates :password, 
-    
+
     confirmation: { message: " não bate." },
     length: { minimum: 6, message: " deve ter pelo menos 6 caracteres." }
 
   validates :email, 
-      presence: { message: "é um campo obrigatório." },
-      uniqueness: { message: " já foi cadastrado no sistema :(" }, 
-      format: { with: /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/, message: " inválido!"},
-      confirmation: { message: " não bate." }
+    presence: { message: "é um campo obrigatório." },
+    uniqueness: { message: " já foi cadastrado no sistema :(" }, 
+    format: { with: /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/, message: " inválido!"},
+    confirmation: { message: " não bate." }
 
   before_create :override_rank
   before_validation :normalize_email

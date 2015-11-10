@@ -20,8 +20,8 @@ RSpec.describe "users/index", type: :view do
     render
     assert_select "form[action=?][method=?]", users_rank_update_path, "post" do
       @users.each do |user|
-          assert_select "select[name=?]", "rank[#{user.id}]"
-          assert_select "select[name=?]>option", "rank[#{user.id}]"
+        assert_select "select[name=?]", "rank[#{user.id}]"
+        assert_select "select[name=?]>option", "rank[#{user.id}]"
       end
     end
   end
