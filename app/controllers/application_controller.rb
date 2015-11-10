@@ -5,19 +5,19 @@ class ApplicationController < ActionController::Base
 
   def force_authentication
     if !session[:auth]
-      flash[:errors] = ["Por favor, faça o login"]
+      flash[:notice] = "Por favor, faça o login"
       redirect_to sessions_new_path
       return false
     elsif session[:auth]['login_time'] < 10.days.ago
-      flash[:errors] = ["Sua sessão expirou"]
+      flash[:notice] = "Sua sessão expirou"
       redirect_to sessions_destroy_path
       return false
     elsif !User.exists?(session[:auth]['user_id'])
-      flash[:errors] = ["Ocorreu um erro inesperado, tente logar novamente"]
+      flash[:notice] = "Ocorreu um erro inesperado, tente logar novamente"
       redirect_to sessions_destroy_path
       return false
     elsif User.find(session[:auth]['user_id']).rank < User::ACCEPTED
-      flash[:errors] = ["O seu cadastro ainda não foi aceito. Tente novamente mais tarde"]
+      flash[:notice] = "O seu cadastro ainda não foi aceito. Tente novamente mais tarde"
       redirect_to sessions_destroy_path
       return false
     else
@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
     return false unless force_authentication
 
     if User.find(session[:auth]['user_id']).rank < User::ADMIN
-      flash[:errors] = ["Você deve ser admin para acessar esta página"]
+      flash[:notice] = "Você deve ser admin para acessar esta página"
       redirect_to root_path
       return false
     end

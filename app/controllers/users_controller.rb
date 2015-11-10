@@ -1,11 +1,21 @@
 class UsersController < ApplicationController
   before_action only: [:show, :edit, :update, :destroy] { set_user(params) }
-  before_action :force_authentication, only: [:show, :edit, :update, :destroy]
+  before_action :force_authentication, only: [:show, :edit, :update, :destroy, :index, :update_ranks]
+  before_action :has_to_be_admin, only: [:index, :update_ranks]
 
   # GET /users
   # GET /users.json
   def index
     @users = User.all
+  end
+
+  def update_ranks
+    params[:rank].each do |user_id, user_rank|
+      user = User.find(user_id)
+      user.update_attribute(:rank, user_rank)
+    end
+
+    redirect_to '/users'
   end
 
   # GET /users/1
@@ -71,7 +81,7 @@ class UsersController < ApplicationController
       return false unless params[:id].to_i == session[:auth]['user_id'].to_i or has_to_be_admin
 
       if !User.exists?(params[:id])
-        flash[:errors] = ["Usuário não existente"]
+        flash[:notice] = "Usuário não existente"
         redirect_to root_path
         return false
       end

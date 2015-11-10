@@ -35,6 +35,12 @@ Given(/^That user's "(.*?)" is "(.*?)"$/) do |attr, value|
   @last_user[attr.to_sym] = value
 end
 
+Given(/^That user is an? "(.*?)"$/) do |role|
+  user = User.find_by_id(@last_user[:id])
+  user.update_attribute(:rank, User.const_get(role))
+  @last_user[:rank] = User.const_get(role)
+end
+
 Then(/^I should see every user's "(.*?)"$/) do |attr|
   users = User.all
 
@@ -71,3 +77,19 @@ Then(/^The email field should have that user's email$/) do
   expect( find_field('user[email]').value ).to eq(@last_user[:email])
 end
 
+When(/^I access the users listing page$/) do
+  visit '/users/'
+end
+
+When(/^I try to access the users listing page$/) do
+  visit '/users/'
+end
+
+When(/^I select "(.*?)" for that user$/) do |value|
+  select value, from: "rank[#{@last_user[:id]}]"
+end
+
+Then(/^That user should be an "(.*?)"$/) do |rank|
+  user = User.find(@last_user[:id])
+  expect( user.rank ).to eq( User.const_get(rank) )
+end

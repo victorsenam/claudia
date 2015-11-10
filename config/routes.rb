@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   # users routes
   get 'users/edit', to: 'users#edit'
+  post 'users/rank/update', to: 'users#update_ranks'
   resources :users
 
 
