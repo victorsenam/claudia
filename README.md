@@ -8,3 +8,8 @@ O sistema está sendo desenvolvido como um projeto para a matéria de MAC0242 (L
 - [Pedro Nepomuceno](http://github.com/pisn)
 - [Hélio Assakura](http://github.com/hassakura)
 - [Victor Sena](http://github.com/victorsenam)
+
+# Root User
+Para poder acessar funcionalidades restritas a usuários nomais, é necessário gerar o usuário root com
+`rake db:migrate`.
+Isso vai gerar um super-usuário com email root@root.com e senha roottoor.
