@@ -49,8 +49,9 @@ group :test do
 
   gem 'selenium-webdriver'
   gem 'nyan-cat-formatter'
-  
+
   gem 'rake'
+  gem 'codeclimate-test-reporter', require: nil
 end
 
 group :development do
