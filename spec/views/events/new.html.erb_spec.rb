@@ -1,14 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe "events/new", type: :view do
-  before(:each) do
-    assign(:event, Event.new(
-      :name => "MyText",
-      :image_url => "MyText",
-      :description => "MyText"
-    ))
-  end
-
   it "renders new event form" do
     render
 

@@ -12,22 +12,22 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br>
+    <%= f.label :name, "Nome" %><br>
     <%= f.text_area :name %>
   </div>
   <div class="field">
-    <%= f.label :date %><br>
+    <%= f.label :date, "Data" %><br>
     <%= f.datetime_select :date %>
   </div>
   <div class="field">
-    <%= f.label :image_url %><br>
+    <%= f.label :image_url, "Imagem" %><br>
     <%= f.text_area :image_url %>
   </div>
   <div class="field">
-    <%= f.label :description %><br>
+    <%= f.label :description, "Descrição" %><br>
     <%= f.text_area :description %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Criar" %>
   </div>
 <% end %>
