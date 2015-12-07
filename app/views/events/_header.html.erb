@@ -1,0 +1,16 @@
+<div class="header">
+
+  <div id="logo_div">
+  	<%=image_tag("logo.png", alt: "logo", :class => "logo", :id => "logo" )%>
+  </div>
+
+  <span id="user_login">
+    <% if session[:auth] %>
+      <%= session[:auth]['user_id'] %>
+      <%= link_to "Logout", sessions_destroy_path %>
+    <% else %>
+      <%= link_to "Login", sessions_new_path %>
+    <% end %>
+  </span>
+
+</div>
