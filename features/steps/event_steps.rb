@@ -1,4 +1,4 @@
-Given(/^I (try to)? access the event creation page$/) do
+Given(/^I( try to)? access the event creation page$/) do
   visit '/events/new'
 end
 
