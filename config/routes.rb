@@ -12,6 +12,10 @@ Rails.application.routes.draw do
   post 'users/rank/update', to: 'users#update_ranks'
   resources :users
 
+  # dummy routes
+  get 'dummy/event/list', to: 'dummy#event_list'
+  get 'dummy/event/show', to: 'dummy#event_show'
+  get 'dummy/event/edit', to: 'dummy#event_edit'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
