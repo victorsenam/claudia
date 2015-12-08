@@ -45,7 +45,7 @@ width: 100%;
 }
 .content_wrap {
 
-width: 83%;
+width: 84%;
 float: right;
 }
 
@@ -54,19 +54,12 @@ float: right;
 	margin: auto;
 	width: 90%;
 
+
 }
 
-.sidebar {
-	width: 15%;
-	float: left;
-	border: 2px solid #d21e45;
-	border-radius: 0px;
-	border-left: none;
-	border-top-right-radius: 10px; ;
-	margin-top: 0px;
-	height: 500px;
-}
 
+
+/*Sidebar menu */
 #logo_div {
 
 	padding-top: 5px;
