@@ -34,14 +34,6 @@ RSpec.describe EventsController, type: :controller do
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # EventsController. Be sure to keep this updated too.
-  def gen_valid_session(user)
-    return {
-      auth: {
-        login_time: Time.now(),
-        user_id: user.id
-      }.stringify_keys
-    }
-  end
   let(:valid_session) { gen_valid_session(create(:user_ranked, rank: User::ACCEPTED)) }
   let(:valid_admin_session) { gen_valid_session(create(:user_ranked, rank: User::ADMIN)) }
 

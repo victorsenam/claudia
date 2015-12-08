@@ -68,3 +68,13 @@ end
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
 end
+
+# Session Creator
+def gen_valid_session(user)
+  return {
+    auth: {
+      login_time: Time.now(),
+      user_id: user.id
+    }.stringify_keys
+  }
+end
