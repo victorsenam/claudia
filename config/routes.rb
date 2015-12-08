@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :events
   root :to => 'users#edit'
 
   resources :teams

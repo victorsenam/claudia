@@ -24,7 +24,7 @@ Feature: User Login
     And That user is an "ACCEPTED"
     And I am logged in as that user
     And I am at the root page
-    When I click on a link with "Logout" as text
+    When I click on a link with "Sair" as text
     Then I should see "Deslogado com Sucesso"
 
   Scenario: Logged in users should be able to see their profiles
