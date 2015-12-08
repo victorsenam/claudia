@@ -6,8 +6,8 @@
 
   <span id="user_login">
     <% if session[:auth] %>
-      <%= session[:auth]['user_id'] %>
-      <%= link_to "Logout", sessions_destroy_path %>
+      <%= session[:auth][''] %>
+      <%= link_to "Sair", sessions_destroy_path, :class => 'logout' %>
     <% else %>
       <%= link_to "Login", sessions_new_path %>
     <% end %>

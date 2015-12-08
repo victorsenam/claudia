@@ -7,6 +7,14 @@ FactoryGirl.define do
     email { Faker::Internet.email("#{name}") }
     password { Faker::Internet.password(8, 30) }
     rank 0
-  end
 
+    factory :user_ranked do
+      to_create do |instance| 
+        rank = instance.rank
+        instance.save!
+        instance.rank = rank
+        instance.save!
+      end
+    end
+  end
 end
