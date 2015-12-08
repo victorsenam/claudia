@@ -36,8 +36,7 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
-  has_many :team_members
-  has_many :teams, :through => :team_members
+  has_and_belongs_to_many :teams
 
   def override_rank
     self.rank = PENDING
