@@ -12,11 +12,7 @@
   <%= render 'header' %>
   <body>
 
-    <% if flash[:notice] %>
-      <div id="notice">
-        <%= flash[:notice] %>
-      </div>
-    <% end %>
+    
 
     <div class="space">
 
@@ -28,6 +24,14 @@
 
         </ul>
 
+
+        <% if flash[:notice] %>
+        <div id="notice">
+          <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> 
+
+          <%= flash[:notice] %>
+        </div>
+    <% end %>
       </div>
 
       <div class="content_wrap">
