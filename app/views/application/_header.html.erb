@@ -6,7 +6,7 @@
 
   <span id="user_login">
     <% if session[:auth] %>
-      <%= session[:auth][''] %>
+      Logado como: <%= User.find(session[:auth]['user_id']).name %>
       <%= link_to "Sair", sessions_destroy_path, :class => 'logout' %>
     <% else %>
       <%= link_to "Login", sessions_new_path, :class => 'logout' %>
