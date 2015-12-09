@@ -15,10 +15,6 @@ When(/^I access that team's edition page$/) do
   visit "/teams/#{@last_team.id}/edit"
 end
 
-When(/^I select that user$/) do
-  find("input[type='checkbox'][value='#{@last_user.id}']").set(true)
-end
-
 Then(/^That user should be assigned to that team$/) do
   expect(@last_user.teams.all).to include(@last_team)
 end
@@ -34,3 +30,16 @@ end
 Then(/^I should see that team's name$/) do
   expect( page ).to have_content( @last_team.name )
 end
+
+When(/^I select that team$/) do
+  find("input[type='checkbox'][value='#{@last_user.id}']").set(true)
+end
+
+Then(/^That team should be assigned to that event$/) do
+  expect(@last_event.teams.all).to include(@last_team)
+end
+
+Given(/^That team is assigned to that event$/) do
+  @last_team.events << @last_event
+end
+

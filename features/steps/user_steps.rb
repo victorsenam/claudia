@@ -2,6 +2,10 @@ Given(/^I am on the user signup page$/) do
   visit '/users/new'
 end
 
+When(/^I select that user$/) do
+  find("input[type='checkbox'][value='#{@last_user.id}']").set(true)
+end
+
 Given(/^I am at the login page$/) do
   visit '/sessions/new'
 end
