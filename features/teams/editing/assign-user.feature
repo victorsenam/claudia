@@ -19,8 +19,9 @@ Feature: Assign User to Team
     Given I have a registered user
     And That user is an "ACCEPTED"
     And I have a registered team
-    And That user is assigned to that team
     And I am logged in as that user
     When I access the team list page
+    Then I should not see that team's name
+    Given That user is assigned to that team
+    When I access the team list page
     Then I should see that team's name
-

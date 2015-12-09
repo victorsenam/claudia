@@ -27,8 +27,12 @@ When(/^I access the team list page$/) do
   visit '/teams/'
 end
 
-Then(/^I should see that team's name$/) do
-  expect( page ).to have_content( @last_team.name )
+Then(/^I should( not)? see that team's name$/) do |negate|
+  if (negate)
+    expect( page ).not_to have_content( @last_team.name )
+  else
+    expect( page ).to have_content( @last_team.name )
+  end
 end
 
 When(/^I select that team$/) do
