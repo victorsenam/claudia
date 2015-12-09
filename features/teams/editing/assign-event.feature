@@ -8,6 +8,7 @@ Feature: Assign Team to Event
     And That user is an "ADMIN"
     And I have a registered team
     And I have a registered event
+    And I am logged in as that user
     When I visit that event's edit page
     And I select that team
     And I click the "Salvar" button
