@@ -15,6 +15,16 @@
     <%= f.label :name, "Nome" %><br>
     <%= f.text_field :name %>
   </div>
+
+  <div>
+    <%= f.label :users, "Usuários deste time" %><br>
+    <%= 
+      f.collection_check_boxes(:users, User.all, :id, :name) do |b|
+        b.label { b.check_box(:"checked" => b.object.teams.include?(@team)) }
+      end
+    %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Criar" %>
   </div>
