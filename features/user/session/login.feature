@@ -7,7 +7,7 @@ Feature: User Login
     Given I have a registered user
     And That user is an "ACCEPTED"
     And I am at the login page
-    When I fill that user's "password" in "Senha"
+    When I fill that user's password in "Senha"
     And I fill that user's "email" in "Email"
     And I click the "Entrar" button
     Then I should see "Logado com Sucesso!"

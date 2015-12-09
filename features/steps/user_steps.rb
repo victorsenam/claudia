@@ -25,20 +25,17 @@ When(/^I fill the form with a valid user$/) do
 end
 
 Given(/^I have a registered user$/) do
-  @last_user = attributes_for(:user)
-  create(:user, @last_user)
+  user = attributes_for(:user)
+  @last_user_pass = user[:password]
+  @last_user = create(:user, user)
 end
 
 Given(/^That user's "(.*?)" is "(.*?)"$/) do |attr, value|
-  user = User.find_by_id(@last_user[:id])
-  user.update_attribute(attr.to_sym, value)
-  @last_user[attr.to_sym] = value
+  @last_user = user.update_attribute(attr.to_sym, value)
 end
 
 Given(/^That user is an? "(.*?)"$/) do |role|
-  user = User.find_by_id(@last_user[:id])
-  user.update_attribute(:rank, User.const_get(role))
-  @last_user[:rank] = User.const_get(role)
+  @last_user.update_attribute(:rank, User.const_get(role))
 end
 
 Then(/^I should see every user's "(.*?)"$/) do |attr|
@@ -61,11 +58,16 @@ When(/^I fill that user's "(.*?)" in "(.*?)"$/) do |attribute, field|
   fill_in field, with: val
 end
 
+When(/^I fill that user's password in "(.*?)"$/) do |field|
+  val = @last_user_pass
+  fill_in field, with: val
+end
+
 Given(/^I am logged in as that user$/) do
   visit '/sessions/new'
 
-  fill_in 'Email', with: @last_user[:email]
-  fill_in 'Senha', with: @last_user[:password]
+  fill_in 'Email', with: @last_user.email
+  fill_in 'Senha', with: @last_user_pass
   find( '[value=Entrar]' ).click
 end
 
@@ -74,7 +76,7 @@ When(/^I try to access the edit page$/) do
 end
 
 Then(/^The email field should have that user's email$/) do
-  expect( find_field('user[email]').value ).to eq(@last_user[:email])
+  expect( find_field('user[email]').value ).to eq(@last_user.email)
 end
 
 When(/^I access the users listing page$/) do
@@ -86,10 +88,10 @@ When(/^I try to access the users listing page$/) do
 end
 
 When(/^I select "(.*?)" for that user$/) do |value|
-  select value, from: "rank[#{@last_user[:id]}]"
+  select value, from: "rank[#{@last_user.id}]"
 end
 
 Then(/^That user should be an "(.*?)"$/) do |rank|
-  user = User.find(@last_user[:id])
+  user = User.find(@last_user.id)
   expect( user.rank ).to eq( User.const_get(rank) )
 end
