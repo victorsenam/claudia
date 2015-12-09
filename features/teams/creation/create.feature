@@ -9,7 +9,7 @@ Feature: Team Creation
     And I am logged in as that user
     When I access the team creation page
     And I fill the form with a valid team
-    And I click the "Criar" button
+    And I click the "Salvar" button
     Then I should see "Sucesso"
 
   Scenario: Regular users should not be able to access this page
