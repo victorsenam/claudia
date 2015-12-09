@@ -7,4 +7,30 @@ When(/^I fill the form with a valid team$/) do
   fill_in 'Nome', with: team[:name]
 end
 
+Given(/^I have a registered team$/) do
+  @last_team = create(:team)
+end
 
+When(/^I access that team's edition page$/) do
+  visit "/teams/#{@last_team.id}/edit"
+end
+
+When(/^I select that user$/) do
+  find("input[type='checkbox'][value='#{@last_user.id}']").set(true)
+end
+
+Then(/^That user should be assigned to that team$/) do
+  expect(@last_user.teams).to include(@last_team)
+end
+
+Given(/^I that user is assigned to that team$/) do
+  @last_team.add_user(@last_user)
+end
+
+When(/^I access the team list page$/) do
+  visit '/teams/'
+end
+
+Then(/^I should see that team's name$/) do
+  find(@last_team.name)
+end
