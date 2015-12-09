@@ -20,11 +20,11 @@ When(/^I select that user$/) do
 end
 
 Then(/^That user should be assigned to that team$/) do
-  expect(@last_user.teams).to include(@last_team)
+  expect(@last_user.teams.all).to include(@last_team)
 end
 
-Given(/^I that user is assigned to that team$/) do
-  @last_team.add_user(@last_user)
+Given(/^That user is assigned to that team$/) do
+  @last_team.users << @last_user
 end
 
 When(/^I access the team list page$/) do
