@@ -39,5 +39,11 @@ RSpec.describe Team, type: :model do
       @team.reload
       expect(@team.users).not_to include(user)
     end
+
+    it "clears users when nil is sent on param" do
+      @param = nil
+      @team.set_users(@param)
+      expect( @team.users.count ).to eq(0)
+    end
   end
 end

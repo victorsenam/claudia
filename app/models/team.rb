@@ -8,6 +8,6 @@ class Team < ActiveRecord::Base
     self.users.clear
     users.each do |user_id|
       self.users << User.find(user_id.to_i) unless user_id == ""
-    end
+    end unless users == nil
   end
 end
