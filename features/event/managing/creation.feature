@@ -9,7 +9,7 @@ Feature: Event Creation
     And I am logged in as that user
     When I access the event creation page
     And I fill the form with a valid event
-    And I click the "Criar" button
+    And I click the "Salvar" button
     Then I should see "Evento Criado"
 
   Scenario: Failing to Create an Event
@@ -19,7 +19,7 @@ Feature: Event Creation
     When I access the event creation page
     And I fill the form with a valid event
     And I fill "" in "Nome"
-    And I click the "Criar" button
+    And I click the "Salvar" button
     Then I should see "Erro"
 
   Scenario: Regular User trying to create Event

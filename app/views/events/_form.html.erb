@@ -27,7 +27,17 @@
     <%= f.label :description, "Descrição" %><br>
     <%= f.text_area :description %>
   </div>
-  <div class="actions">
-    <%= f.submit "Criar" %>
+  <div>
+    <%= f.label :teams, "Times deste evento" %><br>
+    <%= f.collection_check_boxes(:teams, Team.all, :id, :name) do |b| %>
+      <span>
+        <%= b.check_box(:"checked" => b.object.events.include?(@event)) %>
+        <%= b.label %>
+      </span>
+    <% end %>
   </div>
+  <div class="actions">
+    <%= f.submit "Salvar" %>
+  </div>
+
 <% end %>
