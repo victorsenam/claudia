@@ -1,7 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Teams</h1>
+<div class="title_header">
+  <div class="line"> </div>
+  <div class="title"><h2>Gerenciar Equipes</h2></div>
 
+</div>
 <table>
   <thead>
     <tr>
@@ -16,7 +19,7 @@
         <td><%= team.name %></td>
         <td><%= link_to 'Show', team %></td>
         <td><%= link_to 'Edit', edit_team_path(team) %></td>
-        <td><%= link_to 'Destroy', team, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to image_tag("remove_icon.png", :class => "row_icon"), team, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +27,4 @@
 
 <br>
 
-<%= link_to 'New Team', new_team_path %>
+<%= link_to 'Adicionar Equipe', new_team_path, :id => 'add_link' %>
