@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   resources :events
-  root :to => 'users#edit'
+  root :to => 'events#index'
 
   resources :teams
   get 'sessions/new', to: 'sessions#new'
