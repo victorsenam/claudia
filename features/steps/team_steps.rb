@@ -36,7 +36,7 @@ Then(/^I should( not)? see that team's name$/) do |negate|
 end
 
 When(/^I select that team$/) do
-  find("input[type='checkbox'][value='#{@last_user.id}']").set(true)
+  find("input[type='checkbox'][value='#{@last_team.id}']").set(true)
 end
 
 Then(/^That team should be assigned to that event$/) do
