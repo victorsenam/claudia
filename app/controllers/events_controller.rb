@@ -6,7 +6,19 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    user = User.find(session[:auth]['user_id'])
+    if (user.rank >= User::ADMIN)
+      @events = Event.all
+    else
+      @events = []
+      Event.all.each do |event|
+        if user.teams.all.any? do |team| 
+          team.events.include?(event)
+        end then
+          @events << event
+        end
+      end
+    end
   end
 
   # GET /events/1
