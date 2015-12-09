@@ -12,15 +12,36 @@
   <%= render 'header' %>
   <body>
 
-    <% if flash[:notice] %>
-      <div id="notice">
-        <%= flash[:notice] %>
-      </div>
-    <% end %>
+    
 
-    <div class="content">
-      <%= yield %>
-    </div>
+    <div class="space">
+
+      <div class = "sidebar">
+
+        <ul>
+          <li> <%= link_to 'Eventos', events_path %></li>
+          <li> <%= link_to 'Usuários', users_path %> </li>
+
+        </ul>
+
+
+        <% if flash[:notice] %>
+        <div id="notice">
+          <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> 
+
+          <%= flash[:notice] %>
+        </div>
+    <% end %>
+      </div>
+
+      <div class="content_wrap">
+
+        <div class="content">
+        <%= yield %>
+        </div>
+      </div>
+
+  </div>
 
   </body>
 

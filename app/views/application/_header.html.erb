@@ -9,7 +9,7 @@
       <%= session[:auth][''] %>
       <%= link_to "Sair", sessions_destroy_path, :class => 'logout' %>
     <% else %>
-      <%= link_to "Login", sessions_new_path %>
+      <%= link_to "Login", sessions_new_path, :class => 'logout' %>
     <% end %>
   </span>
 

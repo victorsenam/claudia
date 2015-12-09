@@ -1,6 +1,9 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Listing Events</h1>
+<div class="title_header">
+  <div class="line"> </div>
+  <div class="title"><h2>Gerenciar Eventos</h2></div>
+
+</div>
 
 <table>
   <thead>
@@ -20,9 +23,9 @@
         <td><%= event.date.to_s %></td>
         <td><%= event.image_url %></td>
         <td><%= event.description %></td>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Detalhes', event %></td>
+        <td><%= link_to 'Editar', edit_event_path(event) %></td>
+        <td><%= link_to image_tag("remove_icon.png", :class => "row_icon"), event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +33,4 @@
 
 <br>
 
-<%= link_to 'New Event', new_event_path %>
+<%= link_to 'Adicionar Evento', new_event_path, :id => 'add_link' %>
