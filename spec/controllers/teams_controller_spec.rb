@@ -107,14 +107,14 @@ RSpec.describe TeamsController, type: :controller do
 
       it "updates the requested team" do
         team = Team.create! valid_attributes
-        put :update, {:id => team.to_param, :team => new_attributes}, valid_session
+        put :update, {:id => team.to_param, :team => new_attributes}, valid_admin_session
         team.reload
         expect(team.name).to eq(new_attributes[:name])
       end
 
       it "assigns the requested team as @team" do
         team = Team.create! valid_attributes
-        put :update, {:id => team.to_param, :team => valid_attributes}, valid_session
+        put :update, {:id => team.to_param, :team => valid_attributes}, valid_admin_session
         expect(assigns(:team)).to eq(team)
       end
 
@@ -122,6 +122,11 @@ RSpec.describe TeamsController, type: :controller do
         team = Team.create! valid_attributes
         put :update, {:id => team.to_param, :team => valid_attributes}, valid_admin_session
         expect(response).to redirect_to(team)
+      end
+
+      it "calls set_team_users helper" do
+        team = create(:team, valid_attributes)
+        put :update, {:id => team.to_param, :team => new_attributes}, valid_admin_session
       end
     end
 

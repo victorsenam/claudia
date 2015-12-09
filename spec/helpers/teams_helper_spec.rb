@@ -23,6 +23,7 @@ RSpec.describe TeamsHelper, type: :helper do
 
     it "associates every user whose id in on the array to given team" do
       helper.set_team_users(@team, @param)
+      @team.reload
       @param.each do |el|
         expect(@team.users).to include(User.find(el.to_i))
       end
@@ -37,6 +38,7 @@ RSpec.describe TeamsHelper, type: :helper do
       user = create(:user)
       @team.users << user
       helper.set_team_users(@team, @param)
+      @team.reload
       expect(@team.users).not_to include(user)
     end
   end
