@@ -32,5 +32,5 @@ When(/^I access the team list page$/) do
 end
 
 Then(/^I should see that team's name$/) do
-  find(@last_team.name)
+  expect( page ).to have_content( @last_team.name )
 end

@@ -6,7 +6,12 @@ class TeamsController < ApplicationController
   # GET /teams
   # GET /teams.json
   def index
-    @teams = Team.all
+    user = User.find(session[:auth]['user_id'])
+    if (user.rank >= User::ADMIN)
+      @teams = Team.all
+    else
+      @teams = user.teams.all
+    end
   end
 
   # GET /teams/1
@@ -30,6 +35,7 @@ class TeamsController < ApplicationController
 
     respond_to do |format|
       if @team.save
+        @team.set_users(params[:team][:users])
         format.html { redirect_to @team, notice: 'O time foi criado com Sucesso.' }
         format.json { render :show, status: :created, location: @team }
       else
@@ -44,6 +50,7 @@ class TeamsController < ApplicationController
   def update
     respond_to do |format|
       if @team.update(team_params)
+        @team.set_users(params[:team][:users])
         format.html { redirect_to @team, notice: 'O time foi atualizado com sucesso.' }
         format.json { render :show, status: :ok, location: @team }
       else

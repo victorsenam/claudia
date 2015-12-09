@@ -38,8 +38,18 @@ RSpec.describe TeamsController, type: :controller do
   let(:valid_admin_session) { gen_valid_session(create(:user_ranked, rank: User::ADMIN)) }
 
   describe "GET #index" do
-    it "assigns all teams as @teams" do
+    it "assigns all teams as @teams for admin" do
       team = Team.create! valid_attributes
+      get :index, {}, valid_admin_session
+      expect(assigns(:teams)).to eq([team])
+    end
+    
+    it "assigns only important teams as @teams for regular user" do
+      create(:team)
+      team = create(:team)
+      user = User.find(valid_session[:auth]['user_id'])
+      user.teams << team
+
       get :index, {}, valid_session
       expect(assigns(:teams)).to eq([team])
     end
