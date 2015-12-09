@@ -18,11 +18,12 @@
 
   <div>
     <%= f.label :users, "Usuários deste time" %><br>
-    <%= 
-      f.collection_check_boxes(:users, User.all, :id, :name) do |b|
-        b.label { b.check_box(:"checked" => b.object.teams.include?(@team)) }
-      end
-    %>
+    <%= f.collection_check_boxes(:users, User.all, :id, :name) do |b| %>
+      <span>
+        <%= b.check_box(:"checked" => b.object.teams.include?(@team)) %>
+        <%= b.label %>
+      </span>
+    <% end %>
   </div>
 
   <div class="actions">
