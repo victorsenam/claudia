@@ -1,0 +1,9 @@
+Relatório da Segunda Entrega do Projeto de MAC0242
+Grupo: Cláudia and the diamonds
+    Caio Barrocal
+    Pedro Nepomuceno
+    Nathan Benedetto
+    Helio Asakura
+    Victor Sena
+
+Na terceira parte do projeto terminamos de implementar as partes que estavam em implementação durante a segunda parte. Isto é, implementamos eventos e times no sistema e as associações de usuários com times e times com eventos.

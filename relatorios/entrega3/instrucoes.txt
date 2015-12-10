@@ -1,0 +1,7 @@
+# No Servidor
+O servidor tem um usário root que pode acessar todas as páginas, suas credenciais são
+- email: root@root.com
+- senha: roottoor
+
+# Localmente
+Para gerar o usuário root localmente basta rodar `rake db:setup`.
