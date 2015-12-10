@@ -24,6 +24,6 @@
     <%= password_field_tag :password %>
   </div>
   <%= submit_tag "Entrar", :class => 'button' %>
-  <%= button_to "Cadastrar", new_user_path, method: 'get', :class => 'button' %>
+  <%= link_to "Cadastrar", new_user_path, :class => 'button' %>
 <% end %>
 
