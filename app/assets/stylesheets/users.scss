@@ -44,11 +44,20 @@ table {
 
 .logout {
 
-  float: right;
-  margin-top: -35px;
   color: white;
   text-decoration: none;
   margin-right: 10px;
-  font-size: 0.8em;
+
+}
+.logout:visited {
+  color: white;
+}
+
+#user_login {
+  float: right;
+  margin-top: -35px;
+  color:white;
+  font-size: 0.7em;
+
 }
 
