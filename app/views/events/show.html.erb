@@ -20,9 +20,12 @@
   <%= @event.description %>
 </p>
 
+<p>
+  <strong>Equipes Responsáveis:</strong>
 <% @teams.each do |team| %>
   <%= link_to team.name, team_path(team) %>
 <% end %>
+</p>
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>
