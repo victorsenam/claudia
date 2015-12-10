@@ -1,0 +1,4 @@
+Os relatorios do codeclimate acusaram duplicatas no código gerado pelo ruby e algumas funções com complexidade alta.
+Foi considerado que as duplicatas geradas pelo scaffold do ruby não eram um problema, mas, de fato, não corrigir a complexidade do código foi uma falha. Estávamos preocupados em implementar as funções que faltavam e deixamos esta refatoração pendente.
+
+Não conseguimos configurar o relatório de cobertura de testes no codeclimate, porém, se você rodar sh aux_scripts/code_climate_test.sh, poderá ver que a cobertura de testes teve uma nota de 92.13%. O que parece bom.
